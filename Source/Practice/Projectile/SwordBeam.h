@@ -7,6 +7,8 @@
 #include "CoreMinimal.h"
 #include "Projectile.h"
 #include "../Effect/EffectManager.h"
+#include "Sound/SoundCue.h"
+
 #include "SwordBeam.generated.h"
 
 /**
@@ -18,6 +20,10 @@ class PRACTICE_API ASwordBeam : public AProjectile
 	GENERATED_BODY()
 	
 public:
+	//소리 재생을 위한 사운드 멤버변수
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
+	TSoftObjectPtr<USoundCue>	m_Sound;
+
 	//오브젝트가 살아있을 시간
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
 	float m_LifeTime;
