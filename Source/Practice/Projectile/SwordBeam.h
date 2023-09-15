@@ -44,4 +44,18 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// 충돌 관련 Delegate
+private:
+	//충돌시 호출되는 함수
+	UFUNCTION()
+		void OnHit(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom
+			, FVector  _vNormalImpulse, const FHitResult& _Hit);
+	//오버랩 시작시 호출되는 함수
+	UFUNCTION()
+		void BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom
+			, int32 _Index, bool _bFromSweep, const FHitResult& _HitResult);
+	//오버랩 끝날시 호출 되는 함수
+	UFUNCTION()
+		void EndOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom
+			, int32 _Index);
 };

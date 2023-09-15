@@ -4,7 +4,7 @@
 #include "SwordBeam.h"
 
 ASwordBeam::ASwordBeam()
-	: m_LifeTime(1.f)
+	: m_LifeTime(2.f)
 	, m_CurTime(0.f)
 {
 }
@@ -12,7 +12,7 @@ ASwordBeam::ASwordBeam()
 void ASwordBeam::BeginPlay()
 {
 	Super::BeginPlay();
-	//UEffectManager::GetInst()->CreateEffect(GetWorld(), EEFFECT_TYPE::EXPLODE, GetLevel(), GetActorLocation());
+
 }
 
 void ASwordBeam::Tick(float DeltaTime)
@@ -24,6 +24,7 @@ void ASwordBeam::Tick(float DeltaTime)
 	if (m_LifeTime < m_CurTime)
 	{
 		//이펙트 재생
+		UEffectManager::GetInst()->CreateEffect(GetWorld(), EEFFECT_TYPE::EXPLODE, GetLevel(), GetActorLocation());
 
 		// 사운드 재생
 		
@@ -34,4 +35,16 @@ void ASwordBeam::Tick(float DeltaTime)
 		//이후 파괴
 		Destroy();
 	}
+}
+
+void ASwordBeam::OnHit(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, FVector _vNormalImpulse, const FHitResult& _Hit)
+{
+}
+
+void ASwordBeam::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index, bool _bFromSweep, const FHitResult& _HitResult)
+{
+}
+
+void ASwordBeam::EndOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index)
+{
 }

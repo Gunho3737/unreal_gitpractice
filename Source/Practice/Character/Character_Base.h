@@ -12,7 +12,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+
+#include "../Projectile/SwordBeam.h"
+
 #include "Character_Base.generated.h"
+
 
 UCLASS()
 class PRACTICE_API ACharacter_Base : public ACharacter
@@ -65,6 +69,10 @@ public:
 
 	//현재 캐릭터가 콤보 공격을하는가
 	bool IsCombo;
+
+	//사용할 소드빔 포인터
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TSubclassOf<ASwordBeam> m_SwordBeam;
 
 public:
 	// Sets default values for this character's properties
