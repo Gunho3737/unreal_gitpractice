@@ -290,7 +290,7 @@ void ACharacter_Base::SwordWave(const FInputActionInstance& _Instance)
 		// 투사체 위치에서 카메라 전방 10미터 위치를 향하는 방향벡터 구하기
 		FVector vDir = CamForwardPos - ProjectileLocation;
 		vDir.Normalize();
-
+		
 		ProjectileLocation += vDir * 100.f;
 
 		//투사체의 속도는 전방벡터 500.f
