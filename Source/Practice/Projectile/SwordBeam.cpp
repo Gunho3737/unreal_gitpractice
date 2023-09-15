@@ -37,10 +37,8 @@ void ASwordBeam::Tick(float DeltaTime)
 		UEffectManager::GetInst()->CreateEffect(GetWorld(), EEFFECT_TYPE::EXPLODE, GetLevel(), GetActorLocation());
 
 		// »ç¿îµå Àç»ý
-		
-		//Æø¹ß
 
-		//µ¥´Ô ³²±è
+		//µ¥Ä® ³²±è
 
 		//ÀÌÈÄ ÆÄ±«
 		Destroy();
