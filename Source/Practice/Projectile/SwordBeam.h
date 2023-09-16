@@ -8,6 +8,7 @@
 #include "Projectile.h"
 #include "../Effect/EffectManager.h"
 #include "Sound/SoundCue.h"
+#include "../Effect/Decal/SwordBeamCrackDecal.h"
 
 #include "SwordBeam.generated.h"
 
@@ -23,6 +24,9 @@ public:
 	//소리 재생을 위한 사운드 멤버변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
 	TSoftObjectPtr<USoundCue>	m_Sound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
+	TSubclassOf<ASwordBeamCrackDecal> SwordBeamDecal;
 
 	//오브젝트가 살아있을 시간
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
