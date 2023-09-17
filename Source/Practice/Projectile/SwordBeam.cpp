@@ -43,6 +43,10 @@ void ASwordBeam::Tick(float DeltaTime)
 		UEffectManager::GetInst()->CreateEffect(GetWorld(), EEFFECT_TYPE::EXPLODE, GetLevel(), GetActorLocation());
 
 		// 사운드 재생
+		if (false == m_Sound.IsNull())
+		{
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), m_Sound.LoadSynchronous(), GetActorLocation());
+		}
 
 		// 투사체 Z좌표가 10.f이상이면 데칼 남김
 		if (MyLocation.Z <= 10.0f)
