@@ -6,8 +6,10 @@
 
 void AAIController_Melee::OnPossess(APawn* _Owner)
 {
+	Super::OnPossess(_Owner);
 }
 
 void AAIController_Melee::OnUnPossess()
 {
+	Super::OnUnPossess();
 }

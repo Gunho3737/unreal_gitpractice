@@ -255,8 +255,8 @@ void ACharacter_Base::Attack(const FInputActionInstance& _Instance)
 
 	for (int32 i = 0; i < ResultArray.Num(); ++i)
 	{
-		// 충돌이 일어난 지점에서 Explode Effect 재생해보기
-		//UEffectManager::GetInst()->CreateEffect(GetWorld(), EEFFECT_TYPE::EXPLODE, GetLevel(), ResultArray[i].Location);
+		// 충돌이 일어난 지점에서 EMP Effect 재생해보기
+		UEffectManager::GetInst()->CreateEffect(GetWorld(), EEFFECT_TYPE::EMP, GetLevel(), ResultArray[i].Location);
 	}
 
 }
