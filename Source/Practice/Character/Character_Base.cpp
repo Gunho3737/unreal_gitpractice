@@ -245,12 +245,12 @@ void ACharacter_Base::Attack(const FInputActionInstance& _Instance)
 		, GetActorLocation(), GetActorLocation()	//충돌체크 시작점과 끝나는 점
 		, FQuat::Identity	//기본 사원수값 (1,1,1)
 		, ECC_GameTraceChannel3 // PlayerAttack Trace Channel
-		, FCollisionShape::MakeSphere(500.f)	//충돌체의 모양, 여기선 구 모양을 만듬
+		, FCollisionShape::MakeSphere(200.f)	//충돌체의 모양, 여기선 구 모양을 만듬
 		, query);
 
 	FColor color;
 	bCollision ? color = FColor::Red : color = FColor::Green;
-	DrawDebugSphere(GetWorld(), GetActorLocation(), 500.f, 40, color, false, 2.f);
+	DrawDebugSphere(GetWorld(), GetActorLocation(), 200.f, 40, color, false, 2.f);
 
 
 	for (int32 i = 0; i < ResultArray.Num(); ++i)

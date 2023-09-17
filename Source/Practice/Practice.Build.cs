@@ -8,7 +8,15 @@ public class Practice : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Niagara" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core"
+			, "CoreUObject"
+			, "Engine"
+			, "InputCore"
+			, "EnhancedInput"
+			, "Niagara"
+			, "AIModule"
+            , "GameplayTasks"
+            , "NavigationSystem"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
