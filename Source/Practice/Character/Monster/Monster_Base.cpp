@@ -43,6 +43,14 @@ void AMonster_Base::BeginPlay()
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &AMonster_Base::BeginOverlap);
 	GetCapsuleComponent()->OnComponentEndOverlap.AddDynamic(this, &AMonster_Base::EndOverlap);
 
+	AAIController* pAIController = Cast<AAIController>(GetController());
+	if (IsValid(pAIController))
+	{
+		pAIController->GetBlackboardComponent()->SetValueAsVector(FName("SpawnPosition"), GetActorLocation());
+		pAIController->GetBlackboardComponent()->SetValueAsFloat(FName("AttackRange"), m_Info.AttackRange);
+		pAIController->GetBlackboardComponent()->SetValueAsFloat(FName("DetectRange"), m_Info.DetectRange);
+	}
+
 }
 
 // Called every frame

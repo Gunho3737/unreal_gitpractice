@@ -4,6 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
+
+#include "behaviortree/BehaviorTree.h"
+#include "behaviortree/blackboarddata.h"
+#include "behaviortree/blackboardcomponent.h"
+
 #include "AIController_Melee.generated.h"
 
 /**
