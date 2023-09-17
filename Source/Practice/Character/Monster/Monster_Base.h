@@ -31,8 +31,10 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info", meta = (AllowPrivateAccess = "true"))
 	EMON_STATE				m_State;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info", meta = (RowType = "MonInfo", AllowPrivateAccess = "true"))
+	
+	//필터로 MonsterInfo만 블루프린트에서 볼수 있도록 함
+	//데이터 테이블을 멤버변수로 받아와 블루프린트에서 세팅
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info", meta = (RowType = "MonsterInfo", AllowPrivateAccess = "true"))
 	FDataTableRowHandle		m_MonTableRow;
 
 
