@@ -2,7 +2,8 @@
 
 
 #include "Monster_Base.h"
-
+#include "AIController_Melee.h"
+#include "../../Projectile/Projectile.h"
 
 // Sets default values
 AMonster_Base::AMonster_Base()
@@ -11,10 +12,10 @@ AMonster_Base::AMonster_Base()
 	PrimaryActorTick.bCanEverTick = true;
 
 	////빙의 방식 - 월드에 배치 or 스폰될 때
-	//AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
-	//
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
+
 	////빙의할 컨트롤러 UClass
-	//AIControllerClass = AAIController_Melee::StaticClass();
+	AIControllerClass = AAIController_Melee::StaticClass();
 
 }
 
@@ -24,6 +25,7 @@ void AMonster_Base::OnConstruction(const FTransform& transform)
 	
 	if (IsValid(m_MonTableRow.DataTable) && !m_MonTableRow.RowName.IsNone())
 	{
+		//블루프린트로 세팅한 데이터테이블의 행 이름을 받아옴
 		pInfo = m_MonTableRow.DataTable->FindRow<FMonsterInfo>(m_MonTableRow.RowName, TEXT(""));
 	
 		// 몬스터의 m_Info 에 값을 넣어준다.
