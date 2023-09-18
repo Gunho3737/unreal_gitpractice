@@ -16,7 +16,8 @@ public class Practice : ModuleRules
 			, "Niagara"
 			, "AIModule"
             , "GameplayTasks"
-            , "NavigationSystem"});
+            , "NavigationSystem"
+			, "UMG"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

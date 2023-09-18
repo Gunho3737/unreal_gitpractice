@@ -14,7 +14,7 @@ APracticeGameModeBase::APracticeGameModeBase()
 	}
 
 	//UI용 위젯 블루프린트 로드해옴
-	ConstructorHelpers::FClassFinder<UUserWidget> ManHUD(TEXT("Script/UMGEditor.WidgetBlueprint'/Game/MyCharacter/Character/UI/BPC_PlayerInfoWidget.BPC_PlayerInfoWidget_C'"));
+	ConstructorHelpers::FClassFinder<UUserWidget> ManHUD(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/MyCharacter/Character/UI/BPC_UserWidget.BPC_UserWidget_C'"));
 
 	if (ManHUD.Succeeded())
 	{
@@ -40,7 +40,7 @@ void APracticeGameModeBase::BeginPlay()
 		if (!IsValid(m_MainHUD))
 		{
 			// 다운캐스팅 실패 ==> UMainHUD_Base 로부터 파생된 블루프린트가 아니다.
-			//UE_LOG(LogTemp, Error, TEXT("MainHUD_Base 캐스팅 실패"))
+			
 		}
 		else
 		{
