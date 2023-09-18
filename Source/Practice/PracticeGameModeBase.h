@@ -19,8 +19,16 @@ private:
 	//이펙트 매니져를 싱글톤화
 	//UEffectManager* m_EffectMgr;
 	//friend class UEffectManager;
+
+	TSubclassOf<UUserWidget>	m_MainHudClass;
+
+	class UMainHUDWidget* m_MainHUD;
+
 public:
 	APracticeGameModeBase();
 	~APracticeGameModeBase();
+
+public:
+	virtual void BeginPlay() override;
 
 };

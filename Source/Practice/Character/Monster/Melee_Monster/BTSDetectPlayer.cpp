@@ -58,4 +58,5 @@ void UBTSDetectPlayer::TickNode(UBehaviorTreeComponent& _OwnCom, uint8* _NodeMem
 	bDetect ? color = FColor::Red : color = FColor::Green;
 	DrawDebugSphere(GetWorld(), pMonster->GetActorLocation(), pMonster->GetMonsterInfo().DetectRange, 40, color, false, 0.4f);
 #endif
+
 }
