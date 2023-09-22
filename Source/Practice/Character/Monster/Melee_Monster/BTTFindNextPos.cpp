@@ -5,8 +5,8 @@
 
 #include "../Monster_Base.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "NavigationSystem.h"
 #include "AIController.h"
+#include "NavigationSystem.h"
 
 UBTTFindNextPos::UBTTFindNextPos()
 {
