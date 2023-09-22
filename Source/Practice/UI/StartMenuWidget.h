@@ -19,7 +19,7 @@ class PRACTICE_API UStartMenuWidget : public UUserWidget
 private:
 	//Components/Button에 존재하는 위젯에서 버튼 입력을 받기위해서 제공하는 클래스
 	UButton* m_StartBtn;
-	UButton* m_EndBtn;
+	UButton* m_ExitBtn;
 
 public:
 	virtual void NativeConstruct() override;
