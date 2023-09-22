@@ -13,5 +13,16 @@ UCLASS()
 class PRACTICE_API AStartLevelGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
+
+	TSubclassOf<UUserWidget>	m_MainHudClass;
+
+	class UStartMenuWidget* m_MainHUD;
+	
+public:
+	AStartLevelGameMode();
+	~AStartLevelGameMode();
+
+public:
+	virtual void BeginPlay() override;
 	
 };
