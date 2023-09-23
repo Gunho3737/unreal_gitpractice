@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "../Header/Globalheader.h"
 #include "StartMenuWidget.h"
+#include "../Header/Globalheader.h"
 #include "Blueprint/UserWidget.h"
 
 void UStartMenuWidget::NativeConstruct()
@@ -46,11 +46,33 @@ void UStartMenuWidget::StartBtnClicked()
 void UStartMenuWidget::StartBtnHovered()
 {
 	UE_LOG(LogTemp, Warning, TEXT("StartButton Hover"));
+
+	UWidgetBlueprintGeneratedClass* pWidgetClass = GetWidgetTreeOwningClass();
+
+	for (int32 i = 0; i < pWidgetClass->Animations.Num(); ++i)
+	{
+		if (pWidgetClass->Animations[i].GetName() == TEXT("StartButtonHoverAnimation_INST"))
+		{
+			PlayAnimation(pWidgetClass->Animations[i]);
+			break;
+		}
+	}
 }
 
 void UStartMenuWidget::StartBtnUnHovered()
 {
 	UE_LOG(LogTemp, Warning, TEXT("StartButton UnHover"));
+
+	UWidgetBlueprintGeneratedClass* pWidgetClass = GetWidgetTreeOwningClass();
+
+	for (int32 i = 0; i < pWidgetClass->Animations.Num(); ++i)
+	{
+		if (pWidgetClass->Animations[i].GetName() == TEXT("StartButtonUnHoverAnimation_INST"))
+		{
+			PlayAnimation(pWidgetClass->Animations[i]);
+			break;
+		}
+	}
 }
 
 void UStartMenuWidget::EndBtnClicked()
