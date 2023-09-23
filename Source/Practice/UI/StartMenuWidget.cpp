@@ -41,6 +41,8 @@ void UStartMenuWidget::NativeTick(const FGeometry& _geo, float _DT)
 void UStartMenuWidget::StartBtnClicked()
 {
 	UE_LOG(LogTemp, Warning, TEXT("StartButton Click"));
+
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MyLevel"));
 }
 
 void UStartMenuWidget::StartBtnHovered()
@@ -65,6 +67,8 @@ void UStartMenuWidget::StartBtnUnHovered()
 
 	UWidgetBlueprintGeneratedClass* pWidgetClass = GetWidgetTreeOwningClass();
 
+	//위젯트리에서 애니메이션 정보를 가져와 애니메이션 이름을 받아 적용
+	//위젯애니메이션이름은 내가만든이름_INST 형태로 저장
 	for (int32 i = 0; i < pWidgetClass->Animations.Num(); ++i)
 	{
 		if (pWidgetClass->Animations[i].GetName() == TEXT("StartButtonUnHoverAnimation_INST"))
@@ -78,6 +82,11 @@ void UStartMenuWidget::StartBtnUnHovered()
 void UStartMenuWidget::EndBtnClicked()
 {
 	UE_LOG(LogTemp, Warning, TEXT("ExitButton Click"));
+
+	//게임끄기
+	UKismetSystemLibrary::QuitGame(GetWorld()
+		, GetWorld()->GetFirstPlayerController()
+		, EQuitPreference::Quit, true);
 }
 
 void UStartMenuWidget::EndBtnHovered()
