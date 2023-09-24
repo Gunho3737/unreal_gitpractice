@@ -37,6 +37,9 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info", meta = (RowType = "MonsterInfo", AllowPrivateAccess = "true"))
 	FDataTableRowHandle		m_MonTableRow;
 
+	//위젯 컴포넌트
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info", meta = (RowType = "MonsterInfo", AllowPrivateAccess = "true"))
+	class UWidgetComponent* m_WidgetComponent;
 
 protected:
 	// 사용할 행동트리

@@ -4,6 +4,8 @@
 #include "Monster_Base.h"
 #include "Melee_Monster/AIController_Melee.h"
 #include "../../Projectile/Projectile.h"
+#include "Components/WidgetComponent.h"
+#include "../../UI/Monster_InfoWidget.h"
 
 // Sets default values
 AMonster_Base::AMonster_Base()
@@ -16,6 +18,10 @@ AMonster_Base::AMonster_Base()
 
 	////ºùÀÇÇÒ ÄÁÆ®·Ñ·¯ UClass
 	AIControllerClass = AAIController_Melee::StaticClass();
+
+	//À§Á¬À» Ä¸½¶¿¡ ºÎÂø
+	m_WidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("WidgetComponent"));
+	m_WidgetComponent->SetupAttachment(GetCapsuleComponent());
 
 }
 
@@ -32,6 +38,8 @@ void AMonster_Base::OnConstruction(const FTransform& transform)
 		if (nullptr != pInfo)
 			m_Info = *pInfo;
 	}
+
+
 }
 
 // Called when the game starts or when spawned
@@ -51,6 +59,17 @@ void AMonster_Base::BeginPlay()
 		pAIController->GetBlackboardComponent()->SetValueAsFloat(FName("DetectRange"), m_Info.DetectRange);
 	}
 
+	UMonster_InfoWidget* pMonInfoWidget = Cast<UMonster_InfoWidget>((m_WidgetComponent->GetWidget()));
+
+	if (!IsValid(pMonInfoWidget))
+	{
+	//	UE_LOG(LogTemp, Warning, TEXT("À§Á¬ ¼¼ÆÃÀÌ ¾ÈµÆ½À´Ï´Ù"));
+	}
+	else
+	{
+		pMonInfoWidget->SetTextBlock("MonTest");
+		pMonInfoWidget->SetHPRatio(0.5f);
+	}
 }
 
 // Called every frame
