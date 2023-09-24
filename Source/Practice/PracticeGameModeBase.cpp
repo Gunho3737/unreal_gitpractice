@@ -48,4 +48,10 @@ void APracticeGameModeBase::BeginPlay()
 			m_MainHUD->AddToViewport();
 		}
 	}
+
+	APlayerController* pController = GetWorld()->GetFirstPlayerController();
+
+	FInputModeGameOnly gamemod;
+	pController->SetInputMode(gamemod);
+	pController->bShowMouseCursor = false;
 }
