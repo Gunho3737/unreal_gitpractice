@@ -30,6 +30,9 @@ void UPlayerInfoWidget::NativeConstruct()
 	m_Image = Cast<UImage>(GetWidgetFromName(FName("Portrait")));
 	m_HPBar = Cast<UProgressBar>(GetWidgetFromName(FName("HPBar")));
 	m_MPBar = Cast<UProgressBar>(GetWidgetFromName(FName("MPBar")));
+
+	SetName("GreyStone");
+	SetHPBarRatio(0.5f);
 }
 
 void UPlayerInfoWidget::NativeTick(const FGeometry& _geo, float _DT)
