@@ -16,7 +16,7 @@ void UStartMenuWidget::NativeConstruct()
 	if (!IsValid(m_StartBtn) || !IsValid(m_ExitBtn))
 	{
 		//참조실패해서 그대로 리턴
-		UE_LOG(LogTemp, Warning, TEXT("Button BindFailure"));
+		LOG(LogTemp, Warning, TEXT("Button BindFailure"));
 		return;
 	}
 	else
@@ -47,7 +47,7 @@ void UStartMenuWidget::StartBtnClicked()
 
 void UStartMenuWidget::StartBtnHovered()
 {
-	UE_LOG(LogTemp, Warning, TEXT("StartButton Hover"));
+	LOG(LogTemp, Warning, TEXT("StartButton Hover"));
 
 	UWidgetBlueprintGeneratedClass* pWidgetClass = GetWidgetTreeOwningClass();
 
@@ -63,7 +63,7 @@ void UStartMenuWidget::StartBtnHovered()
 
 void UStartMenuWidget::StartBtnUnHovered()
 {
-	UE_LOG(LogTemp, Warning, TEXT("StartButton UnHover"));
+	LOG(LogTemp, Warning, TEXT("StartButton UnHover"));
 
 	UWidgetBlueprintGeneratedClass* pWidgetClass = GetWidgetTreeOwningClass();
 
@@ -81,7 +81,7 @@ void UStartMenuWidget::StartBtnUnHovered()
 
 void UStartMenuWidget::EndBtnClicked()
 {
-	UE_LOG(LogTemp, Warning, TEXT("ExitButton Click"));
+	LOG(LogTemp, Warning, TEXT("ExitButton Click"));
 
 	//게임끄기
 	UKismetSystemLibrary::QuitGame(GetWorld()
@@ -91,10 +91,10 @@ void UStartMenuWidget::EndBtnClicked()
 
 void UStartMenuWidget::EndBtnHovered()
 {
-	UE_LOG(LogTemp, Warning, TEXT("ExitButton Hover"));
+	LOG(LogTemp, Warning, TEXT("ExitButton Hover"));
 }
 
 void UStartMenuWidget::EndBtnUnHovered()
 {
-	UE_LOG(LogTemp, Warning, TEXT("ExitButton UnHover"));
+	LOG(LogTemp, Warning, TEXT("ExitButton UnHover"));
 }
