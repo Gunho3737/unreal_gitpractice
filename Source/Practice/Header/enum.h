@@ -45,3 +45,31 @@ enum class EMON_TYPE : uint8
 	RANGE,
 	BOSS,
 };
+
+//아이템 타입의 ID값
+UENUM(BlueprintType)
+enum class EITEM_ID : uint8
+{
+	CI_POTION,
+	CI_MEGAPORION,
+
+	EW_LONGSWORD,
+	EW_DAGGER,
+	EW_BOW,
+
+	EA_LEATHER_ARMOR,
+	EA_STEEL_ARMOR,
+	EA_PLATINUM_ARMOR
+};
+
+//아이템 타입
+UENUM(BlueprintType)
+enum class EITEM_TYPE : uint8
+{
+	WEAPON,
+	ARMOR,
+	ACCESSORY,
+	CONSUMABLE,
+
+	END,
+};

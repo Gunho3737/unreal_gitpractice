@@ -29,7 +29,6 @@ void UPlayerInfoWidget::NativeConstruct()
 	m_Name = Cast<UTextBlock>(GetWidgetFromName(FName("CharacterName")));
 	m_Image = Cast<UImage>(GetWidgetFromName(FName("Portrait")));
 	m_HPBar = Cast<UProgressBar>(GetWidgetFromName(FName("HPBar")));
-	m_MPBar = Cast<UProgressBar>(GetWidgetFromName(FName("MPBar")));
 
 	SetName("GreyStone");
 	SetHPBarRatio(0.5f);

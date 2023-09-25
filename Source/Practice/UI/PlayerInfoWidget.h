@@ -19,7 +19,6 @@ private:
 	class UTextBlock* m_Name;
 	class UImage* m_Image;
 	class UProgressBar* m_HPBar;
-	class UProgressBar* m_MPBar;
 
 
 public:

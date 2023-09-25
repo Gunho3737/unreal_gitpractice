@@ -67,3 +67,33 @@ struct FMonsterInfo : public FTableRowBase	//#include "Engine/Datatable.h"
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float AttackRange;
 };
+
+USTRUCT(Atomic, BlueprintType)
+struct FGameItemInfo
+	: public FTableRowBase
+{
+	GENERATED_BODY();
+
+	//아이템의 ID값
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		EITEM_ID		ID;
+	//아이템의 종류
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		EITEM_TYPE		TYPE;
+	//아이템 설명
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString			Description;
+	//아이템 아이콘 주소
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString			IconPath;
+
+	//아이템으로 인해 변경되는 능력치
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float			Att;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float			Def;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float			Heal_HP;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float			Heal_MP;
+};
