@@ -24,7 +24,6 @@ private:
 public:
 	void SetName(FString _Name);
 	void SetHPBarRatio(float _ratio);
-	void SetMPBarRatio(float _ratio);
 
 public:
 	virtual void NativeConstruct() override;

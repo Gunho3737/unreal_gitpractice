@@ -17,11 +17,6 @@ void UPlayerInfoWidget::SetHPBarRatio(float _ratio)
 	m_HPBar->SetPercent(_ratio);
 }
 
-void UPlayerInfoWidget::SetMPBarRatio(float _ratio)
-{
-	m_MPBar->SetPercent(_ratio);
-}
-
 void UPlayerInfoWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
