@@ -6,3 +6,4 @@
 
 #include "enum.h"
 #include "struct.h"
+#include "define.h"

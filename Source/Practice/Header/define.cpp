@@ -1,0 +1,8 @@
+#include "define.h"
+
+
+DEFINE_LOG_CATEGORY(Player);
+
+DEFINE_LOG_CATEGORY(Monster);
+
+DEFINE_LOG_CATEGORY(AI);
