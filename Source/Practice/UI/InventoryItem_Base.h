@@ -13,5 +13,18 @@ UCLASS()
 class PRACTICE_API UInventoryItem_Base : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
+private:
+	class UTextBlock* m_ItemName;
+	class UTextBlock* m_ItemCount;
+	class UImage* m_IconImg;
+
+
+public:
+	// InventoryItemData 를 입력받아서 초기화하는 함수
+	void InitFromData(UObject* _Data);
+
+public:
+	virtual void NativeConstruct() override;
+	virtual void NativeTick(const FGeometry& _geo, float _DT) override;
 };
