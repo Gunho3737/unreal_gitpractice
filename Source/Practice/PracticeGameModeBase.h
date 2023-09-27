@@ -29,6 +29,9 @@ public:
 	~APracticeGameModeBase();
 
 public:
+	class UMainHUDWidget* GetMainHUD() { return m_MainHUD; }
+
+public:
 	virtual void BeginPlay() override;
 
 };
