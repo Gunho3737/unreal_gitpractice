@@ -3,3 +3,10 @@
 
 #include "GameInstance_Base.h"
 
+UGameInstance_Base::UGameInstance_Base()
+{
+}
+
+UGameInstance_Base::~UGameInstance_Base()
+{
+}

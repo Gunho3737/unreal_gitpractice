@@ -22,6 +22,7 @@ private:
 
 public:
 	// InventoryItemData 를 입력받아서 초기화하는 함수
+	UFUNCTION(BlueprintCallable)
 	void InitFromData(UObject* _Data);
 
 public:

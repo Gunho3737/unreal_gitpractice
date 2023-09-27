@@ -6,12 +6,19 @@
 #include "Engine/GameInstance.h"
 #include "GameInstance_Base.generated.h"
 
-/**
- * 
- */
+class UInventoryManager;
+
 UCLASS()
 class PRACTICE_API UGameInstance_Base : public UGameInstance
 {
 	GENERATED_BODY()
-	
+
+private:
+	UInventoryManager* m_InvenMgr;
+
+public:
+	UGameInstance_Base();
+	~UGameInstance_Base();
+
+	friend class UInventoryManager;
 };
