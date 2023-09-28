@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include "Header/GlobalHeader.h"
 #include "GameInstance_Base.generated.h"
 
 class UInventoryManager;

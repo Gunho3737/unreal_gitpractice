@@ -1,10 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "Character_Base.h"
+
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "../GameInstance_Base.h"
 #include "../Effect/EffectManager.h"
 #include "../Effect/Effect_Base.h"
-
+#include "../Manager/InventoryManager.h"
 
 // Sets default values
 ACharacter_Base::ACharacter_Base()
@@ -208,6 +210,8 @@ void ACharacter_Base::SprintToggle(const FInputActionInstance& _Instance)
 void ACharacter_Base::Jump(const FInputActionInstance& _Instance)
 {
 	Super::Jump();
+
+	//UInventoryManager::GetInst(GetWorld());
 }
 
 void ACharacter_Base::Attack(const FInputActionInstance& _Instance)
