@@ -211,7 +211,7 @@ void ACharacter_Base::Jump(const FInputActionInstance& _Instance)
 {
 	Super::Jump();
 
-	//UInventoryManager::GetInst(GetWorld());
+	UInventoryManager::GetInst(GetWorld())->AddGameItem(EITEM_ID::CI_POTION);
 }
 
 void ACharacter_Base::Attack(const FInputActionInstance& _Instance)
