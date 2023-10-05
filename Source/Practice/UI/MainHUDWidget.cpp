@@ -50,8 +50,8 @@ void UMainHUDWidget::NativeConstruct()
 	}
 	else
 	{
-		m_Inventory->SetVisibility(ESlateVisibility::Visible);
-		//m_Inventory->SetVisibility(ESlateVisibility::Hidden);
+		//m_Inventory->SetVisibility(ESlateVisibility::Visible);
+		m_Inventory->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
 

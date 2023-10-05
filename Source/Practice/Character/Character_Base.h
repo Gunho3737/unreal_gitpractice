@@ -102,7 +102,7 @@ private:
 	void Jump(const FInputActionInstance& _Instance);
 	void Attack(const FInputActionInstance& _Instance);
 	void SwordWave(const FInputActionInstance& _Instance);
-
+	void OpenInventory(const FInputActionInstance& _Instance);
 
 	// 충돌 관련 Delegate
 private:

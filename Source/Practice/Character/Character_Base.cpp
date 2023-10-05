@@ -147,6 +147,12 @@ void ACharacter_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 		}
 	}
 
+	UInputAction* Action = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/MyCharacter/Input/IA_InventoryOn.IA_InventoryOn'"));
+	if (IsValid(Action))
+	{
+		InputCom->BindAction(Action, ETriggerEvent::Triggered, this, &ACharacter_Base::OpenInventory);
+	}
+
 }
 
 void ACharacter_Base::Move(const FInputActionInstance& _Instance)
@@ -309,6 +315,12 @@ void ACharacter_Base::SwordWave(const FInputActionInstance& _Instance)
 	}
 
 	
+}
+
+void ACharacter_Base::OpenInventory(const FInputActionInstance& _Instance)
+{
+	LOG(Player, Warning, TEXT("Inventory UI Open"));
+	UInventoryManager::GetInst(GetWorld())->OpenInventoryUI();
 }
 
 void ACharacter_Base::OnHit(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, FVector _vNormalImpulse, const FHitResult& _Hit)
