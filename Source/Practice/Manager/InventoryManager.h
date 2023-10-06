@@ -52,6 +52,7 @@ public:
 
 	void OpenInventoryUI();
 
+	//UMG쪽에서 호출시키게 하기 위해 blueprintcallable
 	UFUNCTION(BlueprintCallable)
 	void CloseInventoryUI();
 
