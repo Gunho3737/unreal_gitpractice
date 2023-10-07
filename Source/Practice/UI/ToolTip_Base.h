@@ -4,30 +4,23 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Inventory_Base.generated.h"
+#include "ToolTip_Base.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PRACTICE_API UInventory_Base : public UUserWidget
+class PRACTICE_API UToolTip_Base : public UUserWidget
 {
 	GENERATED_BODY()
-
+	
 private:
-	class UListView* m_ListView;
-
+	class UTextBlock* m_Description;
 
 public:
-	void AddItem(UObject* _ItemData);
-	void Clear();
-
-
+	UTextBlock* GetTextBlock() { return m_Description; }
 
 public:
 	virtual void NativeConstruct() override;
 	virtual void NativeTick(const FGeometry& _geo, float _DT) override;
-
-	//인벤토리가 마우스와 겹치면 들어오게할 함수
-	void OnHovered(UObject* _Data, bool _hovered);
 };
