@@ -30,6 +30,11 @@ void AMyPlayerController::Tick(float _DT)
 {
 	Super::Tick(_DT);
 
+	return;
+
+	//최적화 문제로 틱마다 컨트롤러에서 충돌체크는 잘 안하려고함
+	//객체 블루프린트 자체에서 커서모양을 바꾸는 방법을 사용 하는 중
+
 	// 플레이어 컨트롤러에서 매 틱마다 마우스 위치로 RayCasting 시도
 	// TraceChannel 은 PlayerAttack 채널 사용
 	FHitResult result = {};
