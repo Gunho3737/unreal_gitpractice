@@ -77,10 +77,10 @@ void AMonster_Base::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	static float fIntence = 0.0f;
-	fIntence += DeltaTime * 0.1f;
-	//변수화 시킨 Scalar 중 이름이 "Burn Intence"인 모든 Scalar의 값을 수정한다
-	GetMesh()->SetScalarParameterValueOnMaterials(TEXT("Burn Intence"), fIntence);
+	//static float fIntence = 0.0f;
+	//fIntence += DeltaTime * 0.1f;
+	////변수화 시킨 Scalar 중 이름이 "Burn Intence"인 모든 Scalar의 값을 수정한다
+	//GetMesh()->SetScalarParameterValueOnMaterials(TEXT("Burn Intence"), fIntence);
 }
 
 // Called to bind functionality to input
