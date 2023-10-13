@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "../../../Header/GlobalHeader.h"
+
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTDecorator.h"
 #include "BTDMonsterDeathCheck.generated.h"
