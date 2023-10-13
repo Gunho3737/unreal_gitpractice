@@ -42,6 +42,7 @@ private:
 	class UWidgetComponent* m_WidgetComponent;
 
 protected:
+
 	// 사용할 행동트리
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
 	UBehaviorTree* m_BehaviorTree;

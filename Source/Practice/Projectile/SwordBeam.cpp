@@ -2,11 +2,14 @@
 
 
 #include "SwordBeam.h"
+
 #include "Components/DecalComponent.h"
+#include "../Character/Monster/Monster_Base.h"
 
 ASwordBeam::ASwordBeam()
 	: m_LifeTime(1.5f)
 	, m_CurTime(0.f)
+	, death(false)
 {
 	ConstructorHelpers::FClassFinder<ASwordBeamCrackDecal> SwordBeam(TEXT("/Script/Engine.Blueprint'/Game/MyCharacter/Projectile/BPC_SwordBeamGroundCrack.BPC_SwordBeamGroundCrack_C'"));
 	if (SwordBeam.Succeeded())
@@ -19,6 +22,10 @@ void ASwordBeam::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//sphere에 충돌 바인딩
+	GetSphere()->OnComponentHit.AddDynamic(this, &ASwordBeam::OnHit);
+	GetSphere()->OnComponentBeginOverlap.AddDynamic(this, &ASwordBeam::BeginOverlap);
+	GetSphere()->OnComponentEndOverlap.AddDynamic(this, &ASwordBeam::EndOverlap);
 }
 
 void ASwordBeam::Tick(float DeltaTime)
@@ -38,6 +45,11 @@ void ASwordBeam::Tick(float DeltaTime)
 	}
 
 	if (m_LifeTime < m_CurTime)
+	{
+		death = true;
+	}
+
+	if (death == true)
 	{
 		//이펙트 재생
 		UEffectManager::GetInst()->CreateEffect(GetWorld(), EEFFECT_TYPE::EXPLODE, GetLevel(), GetActorLocation());
@@ -66,11 +78,19 @@ void ASwordBeam::Tick(float DeltaTime)
 
 void ASwordBeam::OnHit(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, FVector _vNormalImpulse, const FHitResult& _Hit)
 {
+
 }
 
 void ASwordBeam::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index, bool _bFromSweep, const FHitResult& _HitResult)
 {
-	//만약 겹친 대상이 몬스터면 m_LifeTime을 0으로 만들어서 즉시 폭발시킴
+	AMonster_Base* pMonster = Cast<AMonster_Base>(_OtherActor);
+
+	if (IsValid(pMonster))
+	{
+		//만약 충돌 대상이 몬스터면 즉시 폭발 트리거를 발동
+		death = true;
+	}
+
 }
 
 void ASwordBeam::EndOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index)

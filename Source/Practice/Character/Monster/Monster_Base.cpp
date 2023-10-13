@@ -94,20 +94,12 @@ void AMonster_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 void AMonster_Base::OnHit(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, FVector _vNormalImpulse, const FHitResult& _Hit)
 {
+
 }
 
 void AMonster_Base::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index, bool _bFromSweep, const FHitResult& _HitResult)
 {
-	{
-		//³ª¶û °ãÄ£´ë»óÀÌ ÃÑ¾ËÀÌ¾ú´Ù¸é µé¾î¿È
-		AProjectile* pProjectile = Cast<AProjectile>(_OtherActor);
 
-		if (IsValid(pProjectile))
-		{
-			// pProjectile->GetProjtileInfo();
-			// pProjectile->SetLifeSpan()
-		}
-	}
 
 }
 

@@ -63,7 +63,7 @@ void ACharacter_Base::BeginPlay()
 			pSubsystem->AddMappingContext(InputMapping.LoadSynchronous(), 0);
 		}
 	}
-	
+
 	//캡슐컨퍼넌트에 충돌함수 바인딩
 	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ACharacter_Base::OnHit);
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &ACharacter_Base::BeginOverlap);

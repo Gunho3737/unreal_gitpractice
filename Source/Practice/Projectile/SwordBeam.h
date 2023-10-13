@@ -35,7 +35,7 @@ public:
 private:
 	//델타타임을 계속 더해주고 lifetime과 비교해줄 float
 	float m_CurTime;
-
+	bool death;
 public:
 	// Sets default values for this actor's properties
 	ASwordBeam();

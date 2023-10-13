@@ -9,6 +9,9 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "NiagaraComponent.h"
 
+#include "EnhancedInputSubsystems.h"
+#include "EnhancedInputComponent.h"
+
 #include "Projectile.generated.h"
 
 UCLASS()

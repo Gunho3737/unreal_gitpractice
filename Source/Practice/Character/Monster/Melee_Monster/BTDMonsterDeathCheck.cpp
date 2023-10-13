@@ -9,5 +9,6 @@ UBTDMonsterDeathCheck::UBTDMonsterDeathCheck()
 
 bool UBTDMonsterDeathCheck::CalculateRawConditionValue(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) const
 {
-	return false;
+	return true;
+	//return false;
 }
