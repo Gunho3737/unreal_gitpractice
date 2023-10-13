@@ -57,6 +57,8 @@ void AMonster_Base::BeginPlay()
 		pAIController->GetBlackboardComponent()->SetValueAsVector(FName("SpawnPosition"), GetActorLocation());
 		pAIController->GetBlackboardComponent()->SetValueAsFloat(FName("AttackRange"), m_Info.AttackRange);
 		pAIController->GetBlackboardComponent()->SetValueAsFloat(FName("DetectRange"), m_Info.DetectRange);
+		pAIController->GetBlackboardComponent()->SetValueAsFloat(FName("MaxHP"), m_Info.MaxHP);
+		pAIController->GetBlackboardComponent()->SetValueAsFloat(FName("CurHP"), m_Info.CurHP);
 	}
 
 	UMonster_InfoWidget* pMonInfoWidget = Cast<UMonster_InfoWidget>((m_WidgetComponent->GetWidget()));
