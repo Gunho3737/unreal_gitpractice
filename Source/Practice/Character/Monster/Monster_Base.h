@@ -51,6 +51,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
 	UBlackboardData* m_Blackboard;
 
+	AAIController* pAIController;
+
 public:
 	UBehaviorTree* GetBehaviorTree() { return m_BehaviorTree; }
 	UBlackboardData* GetBloackboard() { return m_Blackboard; }
@@ -58,7 +60,7 @@ public:
 
 	EMON_STATE GetState() { return m_State; }
 	void ChangeState(EMON_STATE _State) { m_State = _State; }
-
+	void GetDamage(float _DMG);
 
 protected:
 	// 에디터 상에서 속성, 위치값이 변경될 때 호출되는 함수

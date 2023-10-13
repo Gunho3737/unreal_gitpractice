@@ -3,7 +3,7 @@
 
 #include "Monster_Base.h"
 #include "Melee_Monster/AIController_Melee.h"
-#include "../../Projectile/Projectile.h"
+#include "../../Projectile/SwordBeam.h"
 #include "Components/WidgetComponent.h"
 #include "../../UI/Monster_InfoWidget.h"
 
@@ -23,6 +23,12 @@ AMonster_Base::AMonster_Base()
 	m_WidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("WidgetComponent"));
 	m_WidgetComponent->SetupAttachment(GetCapsuleComponent());
 
+}
+
+void AMonster_Base::GetDamage(float _DMG)
+{
+	m_Info.CurHP -= _DMG;
+	pAIController->GetBlackboardComponent()->SetValueAsFloat(FName("CurHP"), m_Info.CurHP);
 }
 
 void AMonster_Base::OnConstruction(const FTransform& transform)
@@ -51,7 +57,7 @@ void AMonster_Base::BeginPlay()
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &AMonster_Base::BeginOverlap);
 	GetCapsuleComponent()->OnComponentEndOverlap.AddDynamic(this, &AMonster_Base::EndOverlap);
 
-	AAIController* pAIController = Cast<AAIController>(GetController());
+	pAIController = Cast<AAIController>(GetController());
 	if (IsValid(pAIController))
 	{
 		pAIController->GetBlackboardComponent()->SetValueAsVector(FName("SpawnPosition"), GetActorLocation());
@@ -99,7 +105,12 @@ void AMonster_Base::OnHit(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActo
 
 void AMonster_Base::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index, bool _bFromSweep, const FHitResult& _HitResult)
 {
+	ASwordBeam* pSB = Cast<ASwordBeam>(_OtherActor);
 
+	if (IsValid(pSB))
+	{
+		GetDamage(1100.f);
+	}
 
 }
 
