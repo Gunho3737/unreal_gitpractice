@@ -332,6 +332,7 @@ void ACharacter_Base::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _
 {
 	//UE_LOG(LogTemp, Warning, TEXT("OverLap Active"));
 	//오버랩 된 다른 오브젝트를 파괴시킨다
+	//UInventoryManager::GetInst(GetWorld())->AddGameItem(EITEM_ID::CI_POTION);
 	//_OtherActor->Destroy();
 }
 

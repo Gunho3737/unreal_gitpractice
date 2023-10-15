@@ -5,6 +5,9 @@
 
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "../Monster_Base.h"
+#include "AIController.h"
+
 
 UBTDMonsterDeathCheck::UBTDMonsterDeathCheck()
 {
@@ -16,7 +19,13 @@ bool UBTDMonsterDeathCheck::CalculateRawConditionValue(UBehaviorTreeComponent& O
 
 	if (curhp < 0.0f)
 	{
-		return true;
+		AMonster_Base* pMonster = Cast<AMonster_Base>(OwnerComp.GetAIOwner()->GetPawn());
+
+		if (IsValid(pMonster))
+		{
+			pMonster->ChangeState(EMON_STATE::DEAD);
+			return true;
+		}
 	}
 
 	return false;
