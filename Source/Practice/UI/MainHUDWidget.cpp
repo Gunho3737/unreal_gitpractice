@@ -33,6 +33,12 @@ void UMainHUDWidget::SetPlayerHPRatio(float _Ratio)
 	m_PlayerInfo->SetHPBarRatio(_Ratio);
 }
 
+void UMainHUDWidget::SetRoughSliderValue(float _value)
+{
+	m_MPCInst->SetScalarParameterValue(TEXT("roughness"), _value);
+}
+
+
 void UMainHUDWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
@@ -53,6 +59,19 @@ void UMainHUDWidget::NativeConstruct()
 		//m_Inventory->SetVisibility(ESlateVisibility::Visible);
 		m_Inventory->SetVisibility(ESlateVisibility::Hidden);
 	}
+
+	m_Slider = Cast<USlider>(GetWidgetFromName(FName("RoughSlider")));
+	if (!IsValid(m_Slider))
+	{
+		LOG(LogTemp, Error, TEXT("Slider À§Á¬ ¸ø Ã£À½"));
+	}
+	else
+	{
+		m_Slider->OnValueChanged.AddDynamic(this, &UMainHUDWidget::SetRoughSliderValue);
+	}
+
+	m_MPC = LoadObject<UMaterialParameterCollection>(nullptr, TEXT("/Script/Engine.MaterialParameterCollection'/Game/MyLandScape/MTC_LandScape.MTC_LandScape'"));
+	m_MPCInst = GetWorld()->GetParameterCollectionInstance(m_MPC);
 }
 
 void UMainHUDWidget::NativeTick(const FGeometry& _geo, float _DT)

@@ -6,6 +6,9 @@
 #include "Blueprint/UserWidget.h"
 #include "Inventory_Base.h"
 #include "PlayerInfoWidget.h"
+#include "Components/Slider.h"
+#include <Engine/Classes/Materials/MaterialParameterCollection.h>
+#include <Engine/Classes/Materials/MaterialParameterCollectionInstance.h>
 
 #include "CoreMinimal.h"
 #include "MainHUDWidget.generated.h"
@@ -22,6 +25,13 @@ private:
 	UPlayerInfoWidget* m_PlayerInfo;
 	UInventory_Base* m_Inventory;
 
+	//슬라이더
+	USlider* m_Slider;
+
+	//머티리얼 파라미터 콜렉션
+	UMaterialParameterCollection* m_MPC;
+	UMaterialParameterCollectionInstance* m_MPCInst;
+
 public:
 	UPlayerInfoWidget* GetPlayerInfoWidget() { return m_PlayerInfo; }
 	UInventory_Base* GetInventoryWidget() { return m_Inventory; }
@@ -31,6 +41,9 @@ public:
 
 
 	void SetPlayerHPRatio(float _Ratio);
+
+	UFUNCTION()
+	void SetRoughSliderValue(float _value);
 
 public:
 	virtual void NativeConstruct() override;
