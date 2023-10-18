@@ -17,6 +17,8 @@ void UCharacter_AnimInstance::NativeBeginPlay()
 		//movement�� ������ ����
 		Movement = Character->GetCharacterMovement();
 	}
+
+	//발 소켓 Foot_L, Foot_R
 }
 
 void UCharacter_AnimInstance::NativeUpdateAnimation(float _fDeltaTime)
