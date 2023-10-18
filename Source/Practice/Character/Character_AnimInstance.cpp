@@ -107,3 +107,13 @@ void UCharacter_AnimInstance::AnimNotify_ComboEnd()
 	IsAttack = false;
 	Montage_Stop(0.2f);
 }
+
+void UCharacter_AnimInstance::AnimNotify_LFootStomp()
+{
+	LOG(LogTemp, Warning, TEXT("LFootStompCall"));
+}
+
+void UCharacter_AnimInstance::AnimNotify_RFootStomp()
+{
+	LOG(LogTemp, Warning, TEXT("RFootStompCall"));
+}

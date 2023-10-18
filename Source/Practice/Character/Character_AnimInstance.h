@@ -85,4 +85,10 @@ public:
 	UFUNCTION()
 	void AnimNotify_ComboEnd();
 
+	UFUNCTION()
+	void AnimNotify_LFootStomp();
+
+	UFUNCTION()
+	void AnimNotify_RFootStomp();
+
 };
