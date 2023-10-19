@@ -2,6 +2,7 @@
 
 
 #include "Character_AnimInstance.h"
+#include "../Material/PhysicMT/MyLandScapePhysicalMaterial.h"
 
 void UCharacter_AnimInstance::NativeInitializeAnimation()
 {
@@ -111,9 +112,52 @@ void UCharacter_AnimInstance::AnimNotify_ComboEnd()
 void UCharacter_AnimInstance::AnimNotify_LFootStomp()
 {
 	LOG(LogTemp, Warning, TEXT("LFootStompCall"));
+	PlayPhysicalBasedSound(TEXT("Foot_L"));
 }
 
 void UCharacter_AnimInstance::AnimNotify_RFootStomp()
 {
 	LOG(LogTemp, Warning, TEXT("RFootStompCall"));
+	PlayPhysicalBasedSound(TEXT("Foot_R"));
+}
+
+void UCharacter_AnimInstance::PlayPhysicalBasedSound(const FString& _strSockName)
+{
+	ACharacter_Base* pPlayer = Cast<ACharacter_Base>(TryGetPawnOwner());
+	if (!IsValid(pPlayer))
+		return;
+
+	FVector vSockStartPos = pPlayer->GetMesh()->GetSocketLocation(*_strSockName);
+	FVector vSockEndPos = vSockStartPos + FVector(0.f, 0.f, -100.f);
+
+	// 충돌 결과를 받을 Result 구조체
+	FHitResult hitresult = {};
+
+	// 충돌 옵션 설정 Parameter 구조체
+	FCollisionQueryParams param = {};
+	param.bReturnPhysicalMaterial = true;	// Trace 충돌 성공 시, 해당 물체의 물리재질 받아오기 옵션
+	param.AddIgnoredActor(pPlayer);			// Trace 무시할 액터 등록
+
+	// LineTrace 진행, ECC_GameTraceChannel6 는 Trace_Landscae 채널
+	bool bHit = GetWorld()->LineTraceSingleByChannel(hitresult, vSockStartPos, vSockEndPos, ECC_GameTraceChannel6, param);
+
+
+	if (bHit)
+	{
+		// 충돌 결과 물리재질을 UPhysicalMaterial_Landscape 로 캐스팅
+		UMyLandScapePhysicalMaterial* pPMT = Cast<UMyLandScapePhysicalMaterial>(hitresult.PhysMaterial);
+		if (!IsValid(pPMT))
+			return;
+
+		//pPMT->GetParticle();
+		//pPMT->GetNiagara();
+
+		USoundBase* pSound = pPMT->GetSound();
+		if (IsValid(pSound))
+		{
+			// hitresult.ImpactPoint;
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), pSound, vSockStartPos);
+		}
+	}
+
 }

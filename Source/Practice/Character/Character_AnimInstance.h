@@ -91,4 +91,6 @@ public:
 	UFUNCTION()
 	void AnimNotify_RFootStomp();
 
+private:
+	void PlayPhysicalBasedSound(const FString& _strSockName);
 };
