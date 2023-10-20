@@ -73,3 +73,13 @@ enum class EITEM_TYPE : uint8
 
 	END,
 };
+
+UENUM(BlueprintType)
+enum class FootPrint_Type : uint8
+{
+	LEFT,
+	RIGHT,
+
+	END,
+
+};

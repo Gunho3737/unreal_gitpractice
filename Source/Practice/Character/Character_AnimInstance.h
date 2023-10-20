@@ -93,4 +93,5 @@ public:
 
 private:
 	void PlayPhysicalBasedSound(const FString& _strSockName);
+	void CreateFootPrint(FootPrint_Type _foottype);
 };

@@ -1,11 +1,15 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "Character_Base.h"
 
+
+#include "Components/DecalComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+
 #include "../GameInstance_Base.h"
 #include "../Effect/EffectManager.h"
 #include "../Effect/Effect_Base.h"
+
 #include "../Manager/InventoryManager.h"
 
 
@@ -43,6 +47,18 @@ ACharacter_Base::ACharacter_Base()
 	if (SwordBeam.Succeeded())
 	{
 		m_SwordBeam = SwordBeam.Class;
+	}
+
+	ConstructorHelpers::FClassFinder<AFootPrintDecal> FootPrint_L(TEXT("/Script/Engine.Blueprint'/Game/MyCharacter/Character/Effect/LeftFootPrintDecal.LeftFootPrintDecal_C'"));
+	if (FootPrint_L.Succeeded())
+	{
+		FootPrintDecal_L = FootPrint_L.Class;
+	}
+
+	ConstructorHelpers::FClassFinder<AFootPrintDecal> FootPrint_R(TEXT("/Script/Engine.Blueprint'/Game/MyCharacter/Character/Effect/RightFootPrintDecal.RightFootPrintDecal_C'"));
+	if (FootPrint_R.Succeeded())
+	{
+		FootPrintDecal_R = FootPrint_R.Class;
 	}
 
 }
@@ -156,14 +172,44 @@ void ACharacter_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
-void ACharacter_Base::CreateFootPrint()
+void ACharacter_Base::CreateFootPrint(FootPrint_Type _foottype)
 {
-	//FActorSpawnParameters param = {};
-	//param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn; //스폰세팅, 충돌체와 상관없이 지정해준 위치에서 항상 생성
-	//param.OverrideLevel = GetLevel();
-	//param.bDeferConstruction = false;	// 지연생성(BeginPlay 바로호출 X)
-	//FootPrintDecal* CrackDecal = GetWorld()->SpawnActor<FootPrintDecal>(SwordBeamDecal, GetActorLocation(), FRotator(), param);
-	//CrackDecal->GetDecal()->SetFadeOut(0.5f, 3.0f, true);
+	FActorSpawnParameters param = {};
+	param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn; //스폰세팅, 충돌체와 상관없이 지정해준 위치에서 항상 생성
+	param.OverrideLevel = GetLevel();
+	param.bDeferConstruction = false;	// 지연생성(BeginPlay 바로호출 X)
+
+	//방향을 플레이어 방향을 받게한다음 90도 돌려서 플레이어의 진행방향에 맞춤
+	FRotator playerrotate = GetActorRotation();
+	playerrotate.Yaw += 90.f;
+
+	switch (_foottype)
+	{
+	case FootPrint_Type::LEFT:
+	{
+		FVector Footlocation = GetMesh()->GetSocketLocation(TEXT("Foot_L"));
+
+		AFootPrintDecal* FootDecal = GetWorld()->SpawnActor<AFootPrintDecal>(FootPrintDecal_L, Footlocation, playerrotate, param);
+		//데칼 생성시간, 삭제시간, 삭제후 액터 삭제여부
+		FootDecal->GetDecal()->SetFadeOut(0.5f, 3.0f, true);
+	}
+		break;
+	case FootPrint_Type::RIGHT:
+	{
+		FVector Footlocation = GetMesh()->GetSocketLocation(TEXT("Foot_R"));
+
+		AFootPrintDecal* FootDecal = GetWorld()->SpawnActor<AFootPrintDecal>(FootPrintDecal_R, Footlocation, playerrotate, param);
+		//데칼 생성시간, 삭제시간, 삭제후 액터 삭제여부
+		
+		FootDecal->GetDecal()->SetFadeOut(0.5f, 3.0f, true);
+	}
+		break;
+	case FootPrint_Type::END:
+		break;
+	default:
+		break;
+	}
+
 }
 
 void ACharacter_Base::Move(const FInputActionInstance& _Instance)

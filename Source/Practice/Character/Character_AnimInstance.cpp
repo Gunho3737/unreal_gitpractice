@@ -112,13 +112,19 @@ void UCharacter_AnimInstance::AnimNotify_ComboEnd()
 void UCharacter_AnimInstance::AnimNotify_LFootStomp()
 {
 	LOG(LogTemp, Warning, TEXT("LFootStompCall"));
-	PlayPhysicalBasedSound(TEXT("Foot_L"));
+
+	CreateFootPrint(FootPrint_Type::LEFT);
+
+	//PlayPhysicalBasedSound(TEXT("Foot_L"));
 }
 
 void UCharacter_AnimInstance::AnimNotify_RFootStomp()
 {
 	LOG(LogTemp, Warning, TEXT("RFootStompCall"));
-	PlayPhysicalBasedSound(TEXT("Foot_R"));
+
+	CreateFootPrint(FootPrint_Type::RIGHT);
+
+	//PlayPhysicalBasedSound(TEXT("Foot_R"));
 }
 
 void UCharacter_AnimInstance::PlayPhysicalBasedSound(const FString& _strSockName)
@@ -159,5 +165,17 @@ void UCharacter_AnimInstance::PlayPhysicalBasedSound(const FString& _strSockName
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), pSound, vSockStartPos);
 		}
 	}
+
+}
+
+void UCharacter_AnimInstance::CreateFootPrint(FootPrint_Type _foottype)
+{
+	ACharacter_Base* pPlayer = Cast<ACharacter_Base>(TryGetPawnOwner());
+	if (!IsValid(pPlayer))
+	{
+		return;
+	}
+
+	pPlayer->CreateFootPrint(_foottype);
 
 }

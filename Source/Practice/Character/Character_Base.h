@@ -75,8 +75,11 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TSubclassOf<ASwordBeam> m_SwordBeam;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
-	//TSubclassOf<AFootPrintDecal> FoodPrintDecal;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
+	TSubclassOf<AFootPrintDecal> FootPrintDecal_L;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
+	TSubclassOf<AFootPrintDecal> FootPrintDecal_R;
 
 public:
 	// Sets default values for this character's properties
@@ -97,7 +100,7 @@ public:
 	TSoftObjectPtr<UAnimMontage> GetAttackMontage() { return AttackMontage; }
 	UCameraComponent* GetCamera() { return m_Cam; }
 	USpringArmComponent* GetArm() { return m_Arm; }
-	void CreateFootPrint();
+	void CreateFootPrint(FootPrint_Type _foottype);
 
 private:
 	void Move(const FInputActionInstance& _Instance);
