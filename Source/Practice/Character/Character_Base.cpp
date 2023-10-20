@@ -7,6 +7,7 @@
 #include "../Effect/EffectManager.h"
 #include "../Effect/Effect_Base.h"
 #include "../Manager/InventoryManager.h"
+#include "../Effect/Decal/FootPrintDecal.h"
 
 // Sets default values
 ACharacter_Base::ACharacter_Base()
