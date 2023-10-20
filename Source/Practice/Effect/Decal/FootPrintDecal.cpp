@@ -3,3 +3,12 @@
 
 #include "FootPrintDecal.h"
 
+void AFootPrintDecal::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
+void AFootPrintDecal::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+}

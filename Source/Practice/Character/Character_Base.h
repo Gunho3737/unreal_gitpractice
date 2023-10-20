@@ -14,6 +14,7 @@
 #include "GameFramework/Character.h"
 
 #include "../Projectile/SwordBeam.h"
+#include "../Effect/Decal/FootPrintDecal.h"
 
 #include "Character_Base.generated.h"
 
@@ -74,6 +75,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TSubclassOf<ASwordBeam> m_SwordBeam;
 
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
+	//TSubclassOf<AFootPrintDecal> FoodPrintDecal;
+
 public:
 	// Sets default values for this character's properties
 	ACharacter_Base();
@@ -93,7 +97,7 @@ public:
 	TSoftObjectPtr<UAnimMontage> GetAttackMontage() { return AttackMontage; }
 	UCameraComponent* GetCamera() { return m_Cam; }
 	USpringArmComponent* GetArm() { return m_Arm; }
-	//void CreateSwordWave();
+	void CreateFootPrint();
 
 private:
 	void Move(const FInputActionInstance& _Instance);

@@ -7,7 +7,7 @@
 #include "../Effect/EffectManager.h"
 #include "../Effect/Effect_Base.h"
 #include "../Manager/InventoryManager.h"
-#include "../Effect/Decal/FootPrintDecal.h"
+
 
 // Sets default values
 ACharacter_Base::ACharacter_Base()
@@ -154,6 +154,16 @@ void ACharacter_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 		InputCom->BindAction(Action, ETriggerEvent::Triggered, this, &ACharacter_Base::OpenInventory);
 	}
 
+}
+
+void ACharacter_Base::CreateFootPrint()
+{
+	//FActorSpawnParameters param = {};
+	//param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn; //스폰세팅, 충돌체와 상관없이 지정해준 위치에서 항상 생성
+	//param.OverrideLevel = GetLevel();
+	//param.bDeferConstruction = false;	// 지연생성(BeginPlay 바로호출 X)
+	//FootPrintDecal* CrackDecal = GetWorld()->SpawnActor<FootPrintDecal>(SwordBeamDecal, GetActorLocation(), FRotator(), param);
+	//CrackDecal->GetDecal()->SetFadeOut(0.5f, 3.0f, true);
 }
 
 void ACharacter_Base::Move(const FInputActionInstance& _Instance)
