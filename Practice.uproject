@@ -13,7 +13,8 @@
 				"CoreUObject",
 				"AIModule",
 				"UMG",
-				"PhysicsCore"
+				"PhysicsCore",
+				"Paper2D"
 			]
 		}
 	],
