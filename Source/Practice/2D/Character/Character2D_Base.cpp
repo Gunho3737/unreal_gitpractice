@@ -44,6 +44,8 @@ bool ACharacter2D_Base::ChangeState(EPLAYER2D_STATE _NextState)
 
 void ACharacter2D_Base::PlayFlipbook(EPLAYER2D_STATE _CurState, EPLAYER2D_DIR _CurDir, bool _bLoop, int32 _StartFrame)
 {
+	//플립북을 실행시키는 함수
+
 	//Array전체를 돌면서
 	for (int32 i = 0; i < FlipbookInfoArray.Num(); ++i)
 	{
