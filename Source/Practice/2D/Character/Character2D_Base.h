@@ -79,9 +79,10 @@ public:
 
 
 private:
+	//인풋매핑컨텍스트 멤버변수
 	UPROPERTY(EditAnywhere, Category = "Input", meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UInputMappingContext>	InputMapping;
-
+	//블루프린트에서 세팅해줄 인풋액션
 	UPROPERTY(EditAnywhere, Category = "Input", meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UInputAction>			MoveAction;
 
