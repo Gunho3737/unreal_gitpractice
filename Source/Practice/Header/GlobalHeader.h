@@ -5,5 +5,5 @@
 #include "EngineMinimal.h"
 
 #include "enum.h"
-#include "struct.h"
 #include "define.h"
+#include "struct.h"

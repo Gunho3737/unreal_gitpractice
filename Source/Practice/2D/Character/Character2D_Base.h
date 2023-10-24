@@ -3,9 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "../../Header/GlobalHeader.h"
 #include "PaperCharacter.h"
 #include "PaperFlipbook.h"
-#include "../../Header/GlobalHeader.h"
+
+
 
 #include "Character2D_Base.generated.h"
 
@@ -75,6 +77,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Component, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* Camera;
 
+
+private:
+	UPROPERTY(EditAnywhere, Category = "Input", meta = (AllowPrivateAccess = "true"))
+	TSoftObjectPtr<UInputMappingContext>	InputMapping;
+
+	UPROPERTY(EditAnywhere, Category = "Input", meta = (AllowPrivateAccess = "true"))
+	TSoftObjectPtr<UInputAction>			MoveAction;
+
+	UPROPERTY(EditAnywhere, Category = "Input", meta = (AllowPrivateAccess = "true"))
+	TSoftObjectPtr<UInputAction>			JumpAction;
+
 public:
 	UCameraComponent* GetCamera() { return Camera; }
 
@@ -83,6 +96,9 @@ public:
 	
 	//상태와 방향을 넣어주면, 그거에 맞춘 플립북을 재생하는 함수
 	void PlayFlipbook(EPLAYER2D_STATE _CurState, EPLAYER2D_DIR _CurDir, bool _bLoop = true, int32 _StartFrame = 0);
+
+	void MoveFunction(const FInputActionInstance& _Instance);
+	void JumpFunction(const FInputActionInstance& _Instance);
 
 public:
 

@@ -3,8 +3,68 @@
 
 #include "Character2D_Base.h"
 
-//ÇÃ¸³ºÏ ÄÄÆ÷³ÍÆ®
+#include "EnhancedInputSubsystems.h"
+#include "EnhancedInputComponent.h"
 #include "PaperFlipbookComponent.h"
+#include "InputMappingContext.h"
+
+ACharacter2D_Base::ACharacter2D_Base()
+	: CurState(EPLAYER2D_STATE::NONE), CurDir(EPLAYER2D_DIR::RIGHT)
+{
+	//Ä«¸Þ¶ó ÄÄÆ÷³ÍÆ®¸¦ Root¿¡ ºÎÂø
+	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
+	Camera->SetupAttachment(GetRootComponent());
+}
+
+ACharacter2D_Base::~ACharacter2D_Base()
+{
+}
+
+void ACharacter2D_Base::BeginPlay()
+{
+	Super::BeginPlay();
+
+	APlayerController* pController = Cast<APlayerController>(GetController());
+
+	if (pController)
+	{
+		ULocalPlayer* pLocalPlayer = pController->GetLocalPlayer();
+
+		if (pLocalPlayer && !InputMapping.IsNull())
+		{
+			UEnhancedInputLocalPlayerSubsystem* pSubsystem = pLocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>();
+			pSubsystem->AddMappingContext(InputMapping.LoadSynchronous(), 0);
+		}
+	}
+
+	CurDir = EPLAYER2D_DIR::RIGHT;
+	ChangeState(EPLAYER2D_STATE::IDLE);
+}
+
+void ACharacter2D_Base::Tick(float _DT)
+{
+	Super::Tick(_DT);
+}
+
+void ACharacter2D_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	UEnhancedInputComponent* InputCom = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+	if (nullptr == InputCom)
+		return;
+
+	if (!MoveAction.IsNull())
+	{
+		InputCom->BindAction(MoveAction.LoadSynchronous(), ETriggerEvent::Triggered, this, &ACharacter2D_Base::MoveFunction);
+	}
+
+	if (!JumpAction.IsNull())
+	{
+		InputCom->BindAction(JumpAction.LoadSynchronous(), ETriggerEvent::Triggered, this, &ACharacter2D_Base::JumpFunction);
+	}
+}
+
 
 bool ACharacter2D_Base::ChangeState(EPLAYER2D_STATE _NextState)
 {
@@ -70,32 +130,13 @@ void ACharacter2D_Base::PlayFlipbook(EPLAYER2D_STATE _CurState, EPLAYER2D_DIR _C
 	}
 }
 
-void ACharacter2D_Base::BeginPlay()
+void ACharacter2D_Base::MoveFunction(const FInputActionInstance& _Instance)
 {
-	Super::BeginPlay();
-
-	CurDir = EPLAYER2D_DIR::RIGHT;
-	ChangeState(EPLAYER2D_STATE::IDLE);
+	LOG(Player, Warning, TEXT("2D Char MoveFunc"));
 }
 
-void ACharacter2D_Base::Tick(float _DT)
+void ACharacter2D_Base::JumpFunction(const FInputActionInstance& _Instance)
 {
-	Super::Tick(_DT);
-}
-
-void ACharacter2D_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-}
-
-ACharacter2D_Base::ACharacter2D_Base()
-	: CurState(EPLAYER2D_STATE::NONE), CurDir(EPLAYER2D_DIR::RIGHT)
-{
-	//Ä«¸Þ¶ó ÄÄÆ÷³ÍÆ®¸¦ Root¿¡ ºÎÂø
-	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
-	Camera->SetupAttachment(GetRootComponent());
-}
-
-ACharacter2D_Base::~ACharacter2D_Base()
-{
+	LOG(Player, Warning, TEXT("2D Char JumpFunc"));
+	Jump();
 }

@@ -4,7 +4,7 @@
 #include "InputAction.h"
 #include "NiagaraSystem.h"
 #include "Particles/ParticleSystem.h"
-#include "Engine/Datatable.h"
+#include "Engine/DataTable.h"
 
 
 #include "struct.generated.h"
