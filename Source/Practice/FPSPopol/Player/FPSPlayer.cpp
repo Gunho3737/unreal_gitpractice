@@ -3,12 +3,22 @@
 
 #include "FPSPlayer.h"
 
+#include "EnhancedInputSubsystems.h"
+#include "EnhancedInputComponent.h"
+
 // Sets default values
 AFPSPlayer::AFPSPlayer()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//Ä«¸Þ¶ó ÄÄÆ÷³ÍÆ®¸¦ Ä¸½¶¿¡ ºÎÂø
+	m_Cam = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	m_Cam->SetupAttachment(GetCapsuleComponent());
+}
+
+AFPSPlayer::~AFPSPlayer()
+{
 }
 
 // Called when the game starts or when spawned

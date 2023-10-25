@@ -3,6 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "../../Header/GlobalHeader.h"
+
+#include "InputMappingContext.h"
 #include "GameFramework/Character.h"
 #include "FPSPlayer.generated.h"
 
@@ -12,8 +16,13 @@ class PRACTICE_API AFPSPlayer : public ACharacter
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
+	UCameraComponent* m_Cam;
+
+public:
 	// Sets default values for this character's properties
 	AFPSPlayer();
+	~AFPSPlayer();
 
 protected:
 	// Called when the game starts or when spawned
