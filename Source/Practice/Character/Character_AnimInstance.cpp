@@ -10,12 +10,11 @@ void UCharacter_AnimInstance::NativeInitializeAnimation()
 
 void UCharacter_AnimInstance::NativeBeginPlay()
 {
-	//���� ������ Actor�� ĳ���ͷ� �ٿ�ĳ��Ʈ��
+
 	Character = Cast<ACharacter_Base>(GetOwningActor());
 
 	if (IsValid(Character))
 	{
-		//movement�� ������ ����
 		Movement = Character->GetCharacterMovement();
 	}
 

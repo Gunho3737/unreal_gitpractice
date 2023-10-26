@@ -58,13 +58,10 @@ public:
 	UPROPERTY(Editanywhere, BlueprintReadWrite, Category = "데이터")
 	FVector CameraLookAt;
 public:
-	// �ʱ�ȭ
 	virtual void NativeInitializeAnimation() override;
 
-	// ���忡 ���� ������ ȣ��
 	virtual void NativeBeginPlay() override;
 
-	// �� ƽ(������) ���� ȣ��
 	virtual void NativeUpdateAnimation(float _fDeltaTime) override;
 
 public:
