@@ -56,10 +56,11 @@ private:
 	TSoftObjectPtr<UInputAction>			JumpAction;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
-	TSoftObjectPtr<UInputAction>			SprintToggleAction;
+	TSoftObjectPtr<UInputAction>			AttackAction;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
-	TSoftObjectPtr<UInputAction>			AttackAction;
+	TSoftObjectPtr<UInputAction>			SprintToggleAction;
+
 
 	UPROPERTY(EditAnywhere, Category = "Animation")
 	TSoftObjectPtr<UAnimMontage>			AttackMontage;

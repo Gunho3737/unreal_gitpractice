@@ -22,10 +22,35 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
 	USpringArmComponent* m_Arm;
+
+private:
+	//매핑 컨텍스트
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TSoftObjectPtr<UInputMappingContext>	InputMapping;
+
+	//인풋액션
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TSoftObjectPtr<UInputAction>			MoveAction;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TSoftObjectPtr<UInputAction>			RotationAction;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TSoftObjectPtr<UInputAction>			JumpAction;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TSoftObjectPtr<UInputAction>			AttackAction;
+
 public:
 	// Sets default values for this character's properties
 	AFPSPlayer();
 	~AFPSPlayer();
+
+public:
+	void Move(const FInputActionInstance& _Instance);
+	void Rotation(const FInputActionInstance& _Instance);
+	void Jump(const FInputActionInstance& _Instance);
+	void Attack(const FInputActionInstance& _Instance);
 
 protected:
 	// Called when the game starts or when spawned
