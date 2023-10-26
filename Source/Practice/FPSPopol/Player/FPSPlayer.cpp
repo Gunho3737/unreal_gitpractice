@@ -14,7 +14,11 @@ AFPSPlayer::AFPSPlayer()
 
 	//카메라 컴포넌트를 캡슐에 부착
 	m_Cam = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	m_Cam->SetupAttachment(GetCapsuleComponent());
+	m_Arm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+
+	m_Arm->SetupAttachment(GetCapsuleComponent());
+	//카메라는 카메라암에 부착
+	m_Cam->SetupAttachment(m_Arm);
 }
 
 AFPSPlayer::~AFPSPlayer()
