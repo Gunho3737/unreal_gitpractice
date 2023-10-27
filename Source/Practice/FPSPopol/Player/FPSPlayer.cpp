@@ -23,6 +23,21 @@ AFPSPlayer::AFPSPlayer()
 	m_Arm->SetupAttachment(GetCapsuleComponent());
 	//카메라는 카메라암에 부착
 	m_Cam->SetupAttachment(m_Arm);
+
+	ConstructorHelpers::FClassFinder<UAnimInstance> anim(TEXT("/Script/Engine.AnimBlueprint'/Game/FPSPopol/Character/Animation/Anim_FPSPlayer.Anim_FPSPlayer_C'"));
+
+	if (anim.Succeeded())
+	{
+		GetMesh()->SetAnimInstanceClass(anim.Class);
+	}
+
+	ConstructorHelpers::FObjectFinder<UAnimMontage> Montage(TEXT("/Script/Engine.AnimMontage'/Game/FPSPopol/Character/Animation/AMT_FPSPlayerAttack.AMT_FPSPlayerAttack'"));
+
+	if (Montage.Succeeded())
+	{
+		AttackMontage = Montage.Object;
+	}
+
 }
 
 AFPSPlayer::~AFPSPlayer()
