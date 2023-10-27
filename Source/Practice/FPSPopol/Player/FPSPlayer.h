@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "../../Header/GlobalHeader.h"
+#include "../../Projectile/Projectile.h"
 
 #include "InputMappingContext.h"
 #include "GameFramework/Character.h"
@@ -23,6 +24,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
 	USpringArmComponent* m_Arm;
 
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TSubclassOf<AProjectile> m_Bullet;
+
 private:
 	//매핑 컨텍스트
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -40,6 +44,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TSoftObjectPtr<UInputAction>			AttackAction;
+
+	UPROPERTY(EditAnywhere, Category = "Animation")
+	TSoftObjectPtr<UAnimMontage>			AttackMontage;
 
 public:
 	// Sets default values for this character's properties

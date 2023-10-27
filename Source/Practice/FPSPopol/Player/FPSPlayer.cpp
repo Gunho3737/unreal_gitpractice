@@ -99,6 +99,7 @@ void AFPSPlayer::BeginPlay()
 		}
 	}
 	
+	GetCharacterMovement()->MaxWalkSpeed = 600.f;
 }
 
 // Called every frame
