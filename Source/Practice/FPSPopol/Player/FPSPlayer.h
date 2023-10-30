@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "../../Header/GlobalHeader.h"
-#include "../../Projectile/Projectile.h"
+#include "../../Projectile/Bullet.h"
 
 #include "InputMappingContext.h"
 #include "GameFramework/Character.h"
@@ -25,7 +25,7 @@ public:
 	USpringArmComponent* m_Arm;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
-	TSubclassOf<AProjectile> m_Bullet;
+	TSubclassOf<ABullet> m_Bullet;
 
 	//발사애니메이션 체크, true면 애니메이션 실행중 아니면 실행아님
 	bool ShootAnimationPlay;
