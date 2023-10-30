@@ -3,7 +3,7 @@
 
 #include "Monster_Base.h"
 #include "Melee_Monster/AIController_Melee.h"
-#include "../../Projectile/SwordBeam.h"
+#include "../../Projectile/Bullet.h"
 #include "Components/WidgetComponent.h"
 #include "../../UI/Monster_InfoWidget.h"
 
@@ -105,9 +105,9 @@ void AMonster_Base::OnHit(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActo
 
 void AMonster_Base::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index, bool _bFromSweep, const FHitResult& _HitResult)
 {
-	ASwordBeam* pSB = Cast<ASwordBeam>(_OtherActor);
+	ABullet* pAB = Cast<ABullet>(_OtherActor);
 
-	if (IsValid(pSB))
+	if (IsValid(pAB))
 	{
 		GetDamage(1100.f);
 	}
