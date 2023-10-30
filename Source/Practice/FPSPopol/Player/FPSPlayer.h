@@ -67,6 +67,8 @@ public:
 	void Jump(const FInputActionInstance& _Instance);
 	void Attack(const FInputActionInstance& _Instance);
 
+	void BulletReload();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

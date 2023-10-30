@@ -72,13 +72,21 @@ void UFPSPlayerAnimInstance::AnimNotify_ShootStart()
 void UFPSPlayerAnimInstance::AnimNotify_ShootEnd()
 {
 	Character->ShootAnimationPlay = false;
+	Montage_Stop(0.1f);
 	IsAttack = false;
 }
 
 void UFPSPlayerAnimInstance::AnimNotify_ReloadStart()
 {
+	Character->ReloadAnimationPlay = true;
+	IsAttack = true;
 }
 
 void UFPSPlayerAnimInstance::AnimNotify_ReloadEnd()
 {
+	Character->ReloadAnimationPlay = false;
+	Character->BulletReload();
+	Montage_Stop(0.1f);
+	IsAttack = false;
+
 }
