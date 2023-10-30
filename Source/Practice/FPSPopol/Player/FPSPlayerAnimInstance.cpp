@@ -60,7 +60,7 @@ void UFPSPlayerAnimInstance::NativeUpdateAnimation(float _fDeltaTime)
 	Character->GetActorLocation();
 	Character->GetActorForwardVector();
 
-	CameraLookAt = Character->m_Cam->GetComponentLocation() + Character->m_Cam->GetForwardVector() * 500;
+	CameraLookAt = Character->m_Cam->GetComponentLocation() + Character->m_Cam->GetForwardVector() * 1000;
 }
 
 void UFPSPlayerAnimInstance::AnimNotify_ShootStart()
