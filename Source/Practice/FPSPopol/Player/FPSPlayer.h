@@ -27,6 +27,14 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TSubclassOf<AProjectile> m_Bullet;
 
+	//발사애니메이션 체크, true면 애니메이션 실행중 아니면 실행아님
+	bool ShootAnimationPlay;
+	//재장전 애니메이션 체크, true면 애니메이션 실행중 아니면 실행아님
+	bool ReloadAnimationPlay;
+
+	//잔탄 갯수
+	int bullet;
+
 private:
 	//매핑 컨텍스트
 	UPROPERTY(EditAnywhere, Category = "Input")

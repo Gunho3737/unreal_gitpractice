@@ -62,3 +62,23 @@ void UFPSPlayerAnimInstance::NativeUpdateAnimation(float _fDeltaTime)
 
 	CameraLookAt = Character->m_Cam->GetComponentLocation() + Character->m_Cam->GetForwardVector() * 500;
 }
+
+void UFPSPlayerAnimInstance::AnimNotify_ShootStart()
+{
+	Character->ShootAnimationPlay = true;
+	IsAttack = true;
+}
+
+void UFPSPlayerAnimInstance::AnimNotify_ShootEnd()
+{
+	Character->ShootAnimationPlay = false;
+	IsAttack = false;
+}
+
+void UFPSPlayerAnimInstance::AnimNotify_ReloadStart()
+{
+}
+
+void UFPSPlayerAnimInstance::AnimNotify_ReloadEnd()
+{
+}

@@ -12,6 +12,7 @@
 
 // Sets default values
 AFPSPlayer::AFPSPlayer()
+	: ShootAnimationPlay(false), ReloadAnimationPlay(false), bullet(100)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -94,6 +95,44 @@ void AFPSPlayer::Jump(const FInputActionInstance& _Instance)
 
 void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 {
+	bool bToggle = _Instance.GetValue().Get<bool>();
+
+	if (!IsValid(GetMesh()->GetAnimInstance()) || AttackMontage.IsNull())
+	{
+		//애님 인스턴스가 없거나 공격 몽타쥬 세팅이 안되어있으면 리턴
+		return;
+	}
+
+	if (ReloadAnimationPlay == true)
+	{
+		//현재 재장전 애니메이션 실행중이면 리턴한다
+		//컨트롤하는건 애님 인스턴스
+		return;
+	}
+
+
+	if (ShootAnimationPlay == true)
+	{
+		//현재 발사 애니메이션 실행중이면 리턴한다
+		//컨트롤하는건 애님 인스턴스
+		return;
+	}
+
+	if (bToggle == true)
+	{
+		LOG(LogTemp, Warning, TEXT("AttackFunc Call"));
+		GetMesh()->GetAnimInstance()->Montage_Play(AttackMontage.LoadSynchronous());
+		//	GetMesh()->GetAnimInstance()->Montage_JumpToSection(TEXT("Combo"), AttackMontage.LoadSynchronous());
+		bullet -= 1;
+	}
+	
+	//총알이 0보다 작을경우
+	if (bullet <= 0)
+	{
+		GetMesh()->GetAnimInstance()->Montage_Play(AttackMontage.LoadSynchronous());
+		GetMesh()->GetAnimInstance()->Montage_JumpToSection(TEXT("Reload"), AttackMontage.LoadSynchronous());
+	}
+
 }
 
 // Called when the game starts or when spawned
@@ -152,7 +191,7 @@ void AFPSPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 	if (!AttackAction.IsNull())
 	{
-		InputCom->BindAction(RotationAction.LoadSynchronous(), ETriggerEvent::Triggered, this, &AFPSPlayer::Rotation);
+		InputCom->BindAction(AttackAction.LoadSynchronous(), ETriggerEvent::Triggered, this, &AFPSPlayer::Attack);
 	}
 }
 

@@ -55,4 +55,16 @@ public:
 	virtual void NativeBeginPlay() override;
 
 	virtual void NativeUpdateAnimation(float _fDeltaTime) override;
+
+	UFUNCTION()
+	void AnimNotify_ShootStart();
+
+	UFUNCTION()
+	void AnimNotify_ShootEnd();
+
+	UFUNCTION()
+	void AnimNotify_ReloadStart();
+
+	UFUNCTION()
+	void AnimNotify_ReloadEnd();
 };
