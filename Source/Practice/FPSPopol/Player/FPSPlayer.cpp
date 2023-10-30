@@ -39,6 +39,14 @@ AFPSPlayer::AFPSPlayer()
 		AttackMontage = Montage.Object;
 	}
 
+
+	ConstructorHelpers::FClassFinder<ABullet> Bullet(TEXT("/Script/Engine.Blueprint'/Game/FPSPopol/Character/Bullet/BPC_Bullet.BPC_Bullet_C'"));
+
+	if (Bullet.Succeeded())
+	{
+		m_Bullet = Bullet.Class;
+	}
+
 }
 
 AFPSPlayer::~AFPSPlayer()
@@ -128,10 +136,34 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 
 	if (bToggle == true)
 	{
-	//	LOG(LogTemp, Warning, TEXT("AttackFunc Call"));
+
+		//Gun_High_LOS (총 위쪽 소켓)
+		//Gun_LOS (총구 소켓)
+
 		GetMesh()->GetAnimInstance()->Montage_Play(AttackMontage.LoadSynchronous());
-		//	GetMesh()->GetAnimInstance()->Montage_JumpToSection(TEXT("Combo"), AttackMontage.LoadSynchronous());
 		bullet -= 1;
+
+		////스폰 액터를 위해 필요한 세팅이 담긴 클래스 param
+		FActorSpawnParameters param = {};
+		param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn; //스폰세팅, 충돌체와 상관없이 지정해준 위치에서 항상 생성
+		param.OverrideLevel = GetLevel();
+		param.bDeferConstruction = false;	// 지연생성(BeginPlay 바로호출 X)
+		
+		// 카메라 위치 + 카메라 전방방향 * 10미터
+		FVector CamForwardPos = m_Cam->GetComponentLocation() + m_Cam->GetForwardVector() * 1000;
+		
+		// 투사체 생성위치, 소켓을 넣어줌
+		FVector ProjectileLocation = GetMesh()->GetSocketLocation(FName(TEXT("Gun_LOS")));
+
+		// 투사체 위치에서 카메라 전방 10미터 위치를 향하는 방향벡터 구하기
+		FVector vDir = CamForwardPos - ProjectileLocation;
+		vDir.Normalize();
+
+		ProjectileLocation += vDir * 100.f;
+
+		//투사체의 속도는 전방벡터 500.f
+		AProjectile* pProjectile = GetWorld()->SpawnActor<AProjectile>(m_Bullet, ProjectileLocation, FRotator(), param);
+		pProjectile->m_ProjtileMovement->Velocity = vDir * 5000.f;
 	}
 	
 
