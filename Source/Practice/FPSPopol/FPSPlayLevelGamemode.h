@@ -19,4 +19,11 @@ public:
 	~AFPSPlayLevelGamemode();
 
 	virtual void BeginPlay() override;
+
+private:
+	TSubclassOf<UUserWidget>	m_MainHudClass;
+	class UFPS_MainWidget* m_MainHUD;
+
+public:
+	class UFPS_MainWidget* GetMainHUD() { return m_MainHUD; }
 };
