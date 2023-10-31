@@ -112,5 +112,7 @@ void UBTTMonTrace::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory
 
 		// 현재 추적대상의 위치(최근 이동 목적지) 를 블랙보드에 기록해둔다.
 		OwnerComp.GetBlackboardComponent()->SetValueAsVector(m_RecentTargetPos.SelectedKeyName, pTarget->GetActorLocation());
+		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
+		return;
 	}
 }
