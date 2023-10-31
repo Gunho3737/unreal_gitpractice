@@ -26,6 +26,11 @@ void ABullet::Tick(float DeltaTime)
 	}
 }
 
+void ABullet::BulletDeath()
+{
+	death = true;
+}
+
 ABullet::ABullet()
 	: m_LifeTime(1.5f)
 	, m_CurTime(0.f)

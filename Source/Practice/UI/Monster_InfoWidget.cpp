@@ -27,6 +27,17 @@ void UMonster_InfoWidget::SetTextBlock(const FString& _name)
 	}
 }
 
+void UMonster_InfoWidget::SetMonUIVisibilty(ESlateVisibility _opacity)
+{
+	if (!IsValid(m_Name) || !IsValid(m_HPBar))
+	{
+		return;
+	}
+
+	m_Name->SetVisibility(_opacity);
+	m_HPBar->SetVisibility(_opacity);
+}
+
 void UMonster_InfoWidget::NativeConstruct()
 {
 	Super::NativeConstruct();

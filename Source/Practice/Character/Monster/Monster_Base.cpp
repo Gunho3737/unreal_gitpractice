@@ -31,6 +31,12 @@ void AMonster_Base::GetDamage(float _DMG)
 	pAIController->GetBlackboardComponent()->SetValueAsFloat(FName("CurHP"), m_Info.CurHP);
 }
 
+void AMonster_Base::OffMonUI()
+{
+	pMonInfoWidget->SetMonUIVisibilty(ESlateVisibility::Hidden);
+}
+
+
 void AMonster_Base::OnConstruction(const FTransform& transform)
 {
 	FMonsterInfo* pInfo = nullptr;
@@ -67,7 +73,7 @@ void AMonster_Base::BeginPlay()
 		pAIController->GetBlackboardComponent()->SetValueAsFloat(FName("CurHP"), m_Info.CurHP);
 	}
 
-	UMonster_InfoWidget* pMonInfoWidget = Cast<UMonster_InfoWidget>((m_WidgetComponent->GetWidget()));
+	pMonInfoWidget = Cast<UMonster_InfoWidget>((m_WidgetComponent->GetWidget()));
 
 	if (!IsValid(pMonInfoWidget))
 	{
@@ -76,7 +82,7 @@ void AMonster_Base::BeginPlay()
 	else
 	{
 		pMonInfoWidget->SetTextBlock("MonTest");
-		pMonInfoWidget->SetHPRatio(0.5f);
+		pMonInfoWidget->SetHPRatio(1.f);
 	}
 }
 
@@ -89,6 +95,16 @@ void AMonster_Base::Tick(float DeltaTime)
 	//fIntence += DeltaTime * 0.1f;
 	////변수화 시킨 Scalar 중 이름이 "Burn Intence"인 모든 Scalar의 값을 수정한다
 	//GetMesh()->SetScalarParameterValueOnMaterials(TEXT("Burn Intence"), fIntence);
+	float MaxHP = pAIController->GetBlackboardComponent()->GetValueAsFloat(FName("MaxHP"));
+	float CurHP = pAIController->GetBlackboardComponent()->GetValueAsFloat(FName("CurHP"));
+	float Ratio = CurHP / MaxHP;
+
+	pMonInfoWidget->SetHPRatio(Ratio);
+
+	if (m_State == EMON_STATE::DEAD)
+	{
+		OffMonUI();
+	}
 }
 
 // Called to bind functionality to input
@@ -109,8 +125,10 @@ void AMonster_Base::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _Ot
 
 	if (IsValid(pAB))
 	{
-		GetDamage(1100.f);
+		GetDamage(100.f);
 	}
+	
+	pAB->BulletDeath();
 
 }
 

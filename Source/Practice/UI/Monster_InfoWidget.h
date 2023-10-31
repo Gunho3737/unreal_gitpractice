@@ -26,6 +26,8 @@ public:
 	void SetHPRatio(float _Ratio);
 	void SetTextBlock(const FString& _name);
 
+	void SetMonUIVisibilty(ESlateVisibility _opacity);
+
 public:
 	virtual void NativeConstruct() override;
 	virtual void NativeTick(const FGeometry& _geo, float _DT) override;

@@ -41,6 +41,8 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info", meta = (RowType = "MonsterInfo", AllowPrivateAccess = "true"))
 	class UWidgetComponent* m_WidgetComponent;
 
+	class UMonster_InfoWidget* pMonInfoWidget;
+
 protected:
 
 	// 사용할 행동트리
@@ -61,6 +63,7 @@ public:
 	EMON_STATE GetState() { return m_State; }
 	void ChangeState(EMON_STATE _State) { m_State = _State; }
 	void GetDamage(float _DMG);
+	void OffMonUI();
 
 protected:
 	// 에디터 상에서 속성, 위치값이 변경될 때 호출되는 함수
