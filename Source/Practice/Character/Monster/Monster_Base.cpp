@@ -126,9 +126,9 @@ void AMonster_Base::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _Ot
 	if (IsValid(pAB))
 	{
 		GetDamage(100.f);
+		pAB->BulletDeath();
 	}
 	
-	pAB->BulletDeath();
 
 }
 
