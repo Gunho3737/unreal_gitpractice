@@ -17,7 +17,7 @@ bool UBTDMonsterDeathCheck::CalculateRawConditionValue(UBehaviorTreeComponent& O
 {
 	float curhp = OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("CurHP"));
 
-	if (curhp < 0.0f)
+	if (curhp <= 0.0f)
 	{
 		AMonster_Base* pMonster = Cast<AMonster_Base>(OwnerComp.GetAIOwner()->GetPawn());
 
