@@ -163,7 +163,7 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 
 		//투사체의 속도는 전방벡터 5000.f
 		AProjectile* pProjectile = GetWorld()->SpawnActor<AProjectile>(m_Bullet, ProjectileLocation, FRotator(), param);
-		pProjectile->m_ProjtileMovement->Velocity = vDir * 5000.f;
+		pProjectile->m_ProjtileMovement->Velocity = vDir * 10000.f;
 	}
 	
 
