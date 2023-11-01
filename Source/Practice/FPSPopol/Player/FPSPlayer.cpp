@@ -159,7 +159,7 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 		FVector vDir = CamForwardPos - ProjectileLocation;
 		vDir.Normalize();
 
-		ProjectileLocation += vDir * 50.f;
+		//ProjectileLocation += vDir * 50.f;
 
 		//투사체의 속도는 전방벡터 5000.f
 		AProjectile* pProjectile = GetWorld()->SpawnActor<AProjectile>(m_Bullet, ProjectileLocation, FRotator(), param);
