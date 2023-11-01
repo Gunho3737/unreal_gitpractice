@@ -2,10 +2,16 @@
 
 
 #include "Bullet.h"
+#include "Components/DecalComponent.h"
 
 void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
+
+	//sphere에 충돌 바인딩
+	GetSphere()->OnComponentHit.AddDynamic(this, &ABullet::OnHit);
+	GetSphere()->OnComponentBeginOverlap.AddDynamic(this, &ABullet::BeginOverlap);
+	GetSphere()->OnComponentEndOverlap.AddDynamic(this, &ABullet::EndOverlap);
 }
 
 void ABullet::Tick(float DeltaTime)
@@ -28,7 +34,8 @@ void ABullet::Tick(float DeltaTime)
 
 void ABullet::BulletDeath()
 {
-	death = true;
+	GetSphere()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	//death = true;
 }
 
 ABullet::ABullet()
@@ -44,6 +51,9 @@ ABullet::~ABullet()
 
 void ABullet::OnHit(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, FVector _vNormalImpulse, const FHitResult& _Hit)
 {
+	//LOG(LogTemp, Warning, TEXT("BulletBlock"));
+	GetSphere()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	//death = true;
 }
 
 void ABullet::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index, bool _bFromSweep, const FHitResult& _HitResult)
