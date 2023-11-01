@@ -153,17 +153,15 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 		FVector CamForwardPos = m_Cam->GetComponentLocation() + m_Cam->GetForwardVector() * 1000;
 		
 		// 투사체 생성위치, 소켓을 넣어줌
-		FVector ProjectileLocation = GetMesh()->GetSocketLocation(FName(TEXT("Gun_LOS")));
+		FVector ProjectileLocation = GetMesh()->GetSocketLocation(FName(TEXT("Muzzle_01")));
 
 		// 투사체 위치에서 카메라 전방 10미터 위치를 향하는 방향벡터 구하기
 		FVector vDir = CamForwardPos - ProjectileLocation;
 		vDir.Normalize();
 
-		//ProjectileLocation += vDir * 50.f;
-
 		//투사체의 속도는 전방벡터 5000.f
 		AProjectile* pProjectile = GetWorld()->SpawnActor<AProjectile>(m_Bullet, ProjectileLocation, FRotator(), param);
-		pProjectile->m_ProjtileMovement->Velocity = vDir * 50000.f;
+		pProjectile->m_ProjtileMovement->Velocity = vDir * 10000.f;
 	}
 	
 
