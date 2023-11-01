@@ -12,7 +12,7 @@
 
 // Sets default values
 AFPSPlayer::AFPSPlayer()
-	: ShootAnimationPlay(false), ReloadAnimationPlay(false), bullet(10)
+	: ShootAnimationPlay(false), ReloadAnimationPlay(false), bullet(50)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -40,7 +40,7 @@ AFPSPlayer::AFPSPlayer()
 	}
 
 
-	ConstructorHelpers::FClassFinder<ABullet> Bullet(TEXT("/Script/Engine.Blueprint'/Game/FPSPopol/Character/Bullet/BPC_Bullet.BPC_Bullet_C'"));
+	ConstructorHelpers::FClassFinder<ABullet> Bullet(TEXT("/Script/Engine.Blueprint'/Game/FPSPopol/Bullet/BPC_Bullet.BPC_Bullet_C'"));
 
 	if (Bullet.Succeeded())
 	{
@@ -163,7 +163,7 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 
 		//투사체의 속도는 전방벡터 5000.f
 		AProjectile* pProjectile = GetWorld()->SpawnActor<AProjectile>(m_Bullet, ProjectileLocation, FRotator(), param);
-		pProjectile->m_ProjtileMovement->Velocity = vDir * 10000.f;
+		pProjectile->m_ProjtileMovement->Velocity = vDir * 50000.f;
 	}
 	
 
@@ -173,7 +173,7 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 void AFPSPlayer::BulletReload()
 {
 	//총알 갯수 리로드하기
-	bullet = 10;
+	bullet = 50;
 }
 
 // Called when the game starts or when spawned
