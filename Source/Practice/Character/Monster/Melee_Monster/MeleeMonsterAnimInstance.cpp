@@ -54,6 +54,7 @@ void UMeleeMonsterAnimInstance::AnimNotify_MeleeMonAtt()
 		if (IsValid(pAB))
 		{
 			LOG(LogTemp, Warning, TEXT("MeleeMonster Attack Success"));
+			pAB->HPChange(-20.f);
 		}
 	}
 

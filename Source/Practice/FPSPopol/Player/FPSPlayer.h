@@ -37,6 +37,11 @@ public:
 	//잔탄 갯수
 	int bullet;
 
+	//최대 HP
+	float MaxHP;
+	//현재 HP
+	float CurHP;
+
 private:
 	//매핑 컨텍스트
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -70,6 +75,7 @@ public:
 	void Attack(const FInputActionInstance& _Instance);
 
 	void BulletReload();
+	void HPChange(float _DMG);
 
 protected:
 	// Called when the game starts or when spawned

@@ -14,7 +14,7 @@
 
 // Sets default values
 AFPSPlayer::AFPSPlayer()
-	: ShootAnimationPlay(false), ReloadAnimationPlay(false), bullet(50)
+	: ShootAnimationPlay(false), ReloadAnimationPlay(false), bullet(50), MaxHP(100.0f), CurHP(100.0f)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -169,6 +169,20 @@ void AFPSPlayer::BulletReload()
 	bullet = 50;
 }
 
+void AFPSPlayer::HPChange(float _DMG)
+{
+	CurHP += _DMG;
+
+	if (CurHP > MaxHP)
+	{
+		CurHP = MaxHP;
+	}
+
+	float HPRatio = CurHP / MaxHP;
+
+	CharHud->SetPlayerHPRatio(HPRatio);
+}
+
 // Called when the game starts or when spawned
 void AFPSPlayer::BeginPlay()
 {
@@ -198,6 +212,8 @@ void AFPSPlayer::BeginPlay()
 	//플레이어 HPBar테스트
 	//CharHud->SetPlayerHPRatio(0.5f);
 	GetCharacterMovement()->MaxWalkSpeed = 600.f;
+
+	CharHud->SetPlayerHPRatio(1.0f);
 }
 
 // Called every frame
