@@ -160,6 +160,9 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 		//Åõ»çÃ¼ÀÇ ¼Óµµ´Â Àü¹æº¤ÅÍ 5000.f
 		AProjectile* pProjectile = GetWorld()->SpawnActor<AProjectile>(m_Bullet, ProjectileLocation, FRotator(), param);
 		pProjectile->m_ProjtileMovement->Velocity = vDir * 10000.f;
+
+		//ÃÑ¿¡ ºÙÈú ÀÌÆåÆ®
+		UEffectManager::GetInst()->CreateEffect(GetWorld(), EEFFECT_TYPE::FIRE, GetLevel(), ProjectileLocation);
 	}
 }
 
