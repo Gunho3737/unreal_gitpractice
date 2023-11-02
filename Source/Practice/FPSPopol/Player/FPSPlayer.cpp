@@ -7,6 +7,8 @@
 #include "EnhancedInputComponent.h"
 
 #include "../../GameInstance_Base.h"
+#include "../FPSPlayLevelGamemode.h"
+
 #include "../../Effect/EffectManager.h"
 #include "../../Effect/Effect_Base.h"
 
@@ -159,9 +161,6 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 		AProjectile* pProjectile = GetWorld()->SpawnActor<AProjectile>(m_Bullet, ProjectileLocation, FRotator(), param);
 		pProjectile->m_ProjtileMovement->Velocity = vDir * 10000.f;
 	}
-	
-
-
 }
 
 void AFPSPlayer::BulletReload()
@@ -188,6 +187,16 @@ void AFPSPlayer::BeginPlay()
 		}
 	}
 	
+	//게임모드 받아와서 FPSGameMode로 다운캐스팅
+	AFPSPlayLevelGamemode* FGM = Cast<AFPSPlayLevelGamemode>(UGameplayStatics::GetGameMode(GetWorld()));
+
+	if (IsValid(FGM))
+	{
+		CharHud = FGM->GetMainHUD();
+	}
+
+	//플레이어 HPBar테스트
+	//CharHud->SetPlayerHPRatio(0.5f);
 	GetCharacterMovement()->MaxWalkSpeed = 600.f;
 }
 

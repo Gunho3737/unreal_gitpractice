@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "FPS_PlayerInfoWidget.h"
 #include "FPS_MainWidget.generated.h"
 
 /**
@@ -13,5 +14,17 @@ UCLASS()
 class PRACTICE_API UFPS_MainWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
+private:
+	UFPS_PlayerInfoWidget* m_PlayerInfo;
+
+
+public:
+	void SetPlayerHPRatio(float _Ratio);
+
+	UFPS_PlayerInfoWidget* GetPlayerInfoWidget() { return m_PlayerInfo; }
+
+public:
+	virtual void NativeConstruct() override;
+	virtual void NativeTick(const FGeometry& _geo, float _DT) override;
 };

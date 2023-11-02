@@ -2,8 +2,6 @@
 
 
 #include "FPSPlayLevelGamemode.h"
-#include "Blueprint/UserWidget.h"
-#include "UI/PlayerUI/FPS_MainWidget.h"
 
 
 AFPSPlayLevelGamemode::AFPSPlayLevelGamemode()

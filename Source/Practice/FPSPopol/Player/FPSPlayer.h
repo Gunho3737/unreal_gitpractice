@@ -27,6 +27,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TSubclassOf<ABullet> m_Bullet;
 
+	class UFPS_MainWidget* CharHud;
+
 	//발사애니메이션 체크, true면 애니메이션 실행중 아니면 실행아님
 	bool ShootAnimationPlay;
 	//재장전 애니메이션 체크, true면 애니메이션 실행중 아니면 실행아님

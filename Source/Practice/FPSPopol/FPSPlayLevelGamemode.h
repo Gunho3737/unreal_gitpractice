@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Blueprint/UserWidget.h"
+#include "UI/PlayerUI/FPS_MainWidget.h"
 #include "FPSPlayLevelGamemode.generated.h"
 
 /**
@@ -22,8 +24,8 @@ public:
 
 private:
 	TSubclassOf<UUserWidget>	m_MainHudClass;
-	class UFPS_MainWidget* m_MainHUD;
+	UFPS_MainWidget* m_MainHUD;
 
 public:
-	class UFPS_MainWidget* GetMainHUD() { return m_MainHUD; }
+	UFPS_MainWidget* GetMainHUD() { return m_MainHUD; }
 };
