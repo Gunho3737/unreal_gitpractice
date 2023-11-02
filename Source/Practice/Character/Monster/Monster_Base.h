@@ -60,6 +60,7 @@ public:
 	UBlackboardData* GetBloackboard() { return m_Blackboard; }
 	const FMonsterInfo& GetMonsterInfo() { return m_Info; }
 
+	EMON_TYPE GetMonsterType() { return m_MonType; }
 	EMON_STATE GetState() { return m_State; }
 	void ChangeState(EMON_STATE _State) { m_State = _State; }
 	void GetDamage(float _DMG);

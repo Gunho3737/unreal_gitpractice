@@ -136,10 +136,6 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 
 	if (bToggle == true)
 	{
-
-		//Gun_High_LOS (醚 困率 家南)
-		//Gun_LOS (醚备 家南)
-
 		GetMesh()->GetAnimInstance()->Montage_Play(AttackMontage.LoadSynchronous());
 		bullet -= 1;
 

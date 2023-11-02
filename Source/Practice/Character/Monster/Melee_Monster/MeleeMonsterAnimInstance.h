@@ -27,4 +27,8 @@ public:
 	virtual void NativeInitializeAnimation() override;
 	virtual void NativeBeginPlay() override;
 	virtual void NativeUpdateAnimation(float _fDeltaTime) override;
+
+public:
+	UFUNCTION()
+	void AnimNotify_MeleeMonAtt();
 };
