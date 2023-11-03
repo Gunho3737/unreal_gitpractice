@@ -3,6 +3,7 @@
 
 #include "Monster_Base.h"
 #include "Melee_Monster/AIController_Melee.h"
+#include "Range_Monster/AIController_Range.h"
 #include "../../Projectile/Bullet.h"
 #include "Components/WidgetComponent.h"
 #include "../../UI/Monster_InfoWidget.h"
@@ -13,11 +14,13 @@ AMonster_Base::AMonster_Base()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	////빙의 방식 - 월드에 배치 or 스폰될 때
+	//빙의 방식 - 월드에 배치 or 스폰될 때
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
-	////빙의할 컨트롤러 UClass
+	//빙의할 컨트롤러 UClass
 	AIControllerClass = AAIController_Melee::StaticClass();
+
+
 
 	//위젯을 캡슐에 부착
 	m_WidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("WidgetComponent"));
@@ -49,6 +52,20 @@ void AMonster_Base::OnConstruction(const FTransform& transform)
 		// 몬스터의 m_Info 에 값을 넣어준다.
 		if (nullptr != pInfo)
 			m_Info = *pInfo;
+	}
+
+	switch (m_MonType)
+	{
+	case EMON_TYPE::MELEE:
+		AIControllerClass = AAIController_Melee::StaticClass();
+		break;
+	case EMON_TYPE::RANGE:
+		AIControllerClass = AAIController_Range::StaticClass();
+		break;
+	case EMON_TYPE::BOSS:
+		break;
+	default:
+		break;
 	}
 
 
@@ -84,6 +101,8 @@ void AMonster_Base::BeginPlay()
 		pMonInfoWidget->SetTextBlock("MonTest");
 		pMonInfoWidget->SetHPRatio(1.f);
 	}
+
+
 }
 
 // Called every frame

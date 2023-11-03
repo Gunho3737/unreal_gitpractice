@@ -161,10 +161,7 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 		AProjectile* pProjectile = GetWorld()->SpawnActor<AProjectile>(m_Bullet, ProjectileLocation, FRotator(), param);
 		pProjectile->m_ProjtileMovement->Velocity = vDir * 10000.f;
 
-		//ÃÑ¿¡ ºÙÈú ÀÌÆåÆ®
-		//FRotator EffectRotate = GetActorRotation();
-		//FVector Rot = { 0.f, 0.f, -90.f };
-		//EffectRotate.RotateVector(Rot);
+		//FVector EffectLocation = GetMesh()->GetSocketLocation(FName(TEXT("Gun_LOS")));
 		FVector EffectLocation = GetMesh()->GetSocketLocation(FName(TEXT("Muzzle_01")));
 		UEffectManager::GetInst()->CreateEffect(GetWorld(), EEFFECT_TYPE::FIRE, GetLevel(), EffectLocation);
 	}
