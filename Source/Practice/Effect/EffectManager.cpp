@@ -30,8 +30,24 @@ void UEffectManager::CreateEffect(UWorld* _World, EEFFECT_TYPE _Type, ULevel* _L
 
 	FTransform trans;
 	trans.SetLocation(_Location);
+	
+	AEffect_Base* pEffect = _World->SpawnActor<AEffect_Base>(AEffect_Base::StaticClass(), trans, param);
+	pEffect->SetEffectType(_Type);
+	pEffect->FinishSpawning(pEffect->GetTransform());
+}
+
+void UEffectManager::CreateEffect(UWorld* _World, EEFFECT_TYPE _Type, ULevel* _Level, FRotator _Rotate, FVector _Location)
+{
+	FActorSpawnParameters param = {};
+	param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	param.OverrideLevel = _Level;
+	param.bDeferConstruction = true;	// 지연생성(BeginPlay 호출 X)
+
+	FTransform trans;
+	trans.SetLocation(_Location);
 
 	AEffect_Base* pEffect = _World->SpawnActor<AEffect_Base>(AEffect_Base::StaticClass(), trans, param);
+	pEffect->AddActorWorldRotation(_Rotate);
 	pEffect->SetEffectType(_Type);
 	pEffect->FinishSpawning(pEffect->GetTransform());
 }

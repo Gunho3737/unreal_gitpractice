@@ -27,4 +27,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void CreateEffect(UWorld* _World, EEFFECT_TYPE _Type, ULevel* _Level, FVector _Location);
+
+	//기존 이펙트 생성에서 Rotate도 넣으면 쓸수있도록 오버라이드
+	void CreateEffect(UWorld* _World, EEFFECT_TYPE _Type, ULevel* _Level, FRotator _Rotate, FVector _Location);
 };
