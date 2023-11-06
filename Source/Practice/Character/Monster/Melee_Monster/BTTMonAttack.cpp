@@ -23,6 +23,14 @@ EBTNodeResult::Type UBTTMonAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp
 		return EBTNodeResult::Failed;
 	}
 
+	
+	float Speed = pMonster->GetMovementComponent()->Velocity.Size();
+
+	if (Speed >= 0.f)
+	{
+		//VeloCity정지시키기
+		pMonster->GetMovementComponent()->Velocity = { 0.f,0.f,0.f };
+	}
 
 	switch (pMonster->GetMonsterType())
 	{

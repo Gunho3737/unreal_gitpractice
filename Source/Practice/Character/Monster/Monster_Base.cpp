@@ -98,6 +98,19 @@ void AMonster_Base::BeginPlay()
 	}
 	else
 	{
+		switch (m_MonType)
+		{
+		case EMON_TYPE::MELEE:
+			pMonInfoWidget->SetTextBlock("MeleeMonster");
+			break;
+		case EMON_TYPE::RANGE:
+			pMonInfoWidget->SetTextBlock("RangeMonster");
+			break;
+		case EMON_TYPE::BOSS:
+			break;
+		default:
+			break;
+		}
 		pMonInfoWidget->SetTextBlock("MonTest");
 		pMonInfoWidget->SetHPRatio(1.f);
 	}
