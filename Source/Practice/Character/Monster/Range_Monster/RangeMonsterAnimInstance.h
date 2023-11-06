@@ -21,10 +21,17 @@ public:
 
 	//Enum별 애니메이션을 위해 멤버변수로 EnumState를 가지고 있음
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
-		EMON_STATE			 m_State;
+	EMON_STATE			 m_State;
 
 public:
 	virtual void NativeInitializeAnimation() override;
 	virtual void NativeBeginPlay() override;
 	virtual void NativeUpdateAnimation(float _fDeltaTime) override;
+
+public:
+	//UFUNCTION()
+	//void AnimNotify_RangeMonAtt();
+	//
+	//UFUNCTION()
+	//void AnimNotify_RangeAttEnd();
 };

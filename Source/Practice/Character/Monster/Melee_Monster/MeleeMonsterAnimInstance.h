@@ -31,4 +31,7 @@ public:
 public:
 	UFUNCTION()
 	void AnimNotify_MeleeMonAtt();
+
+	UFUNCTION()
+	void AnimNotify_MeleeAttEnd();
 };

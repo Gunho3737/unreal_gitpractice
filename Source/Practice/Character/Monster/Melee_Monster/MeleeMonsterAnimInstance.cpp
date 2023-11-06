@@ -4,6 +4,8 @@
 #include "MeleeMonsterAnimInstance.h"
 #include "../Monster_Base.h"
 #include "../../../FPSPopol/Player/FPSPlayer.h"
+#include "AIController.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 void UMeleeMonsterAnimInstance::NativeInitializeAnimation()
 {
@@ -58,4 +60,14 @@ void UMeleeMonsterAnimInstance::AnimNotify_MeleeMonAtt()
 		}
 	}
 
+}
+
+void UMeleeMonsterAnimInstance::AnimNotify_MeleeAttEnd()
+{
+	AAIController* moncon = Cast<AAIController>(Monster->GetController());
+
+	if (moncon != nullptr)
+	{
+		moncon->GetBlackboardComponent()->SetValueAsBool(FName("IsAttackAnimationPlay"), false);
+	}
 }

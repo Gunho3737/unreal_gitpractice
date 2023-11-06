@@ -23,6 +23,12 @@ EBTNodeResult::Type UBTTMonAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp
 		return EBTNodeResult::Failed;
 	}
 
+	if (true == OwnerComp.GetBlackboardComponent()->GetValueAsBool(FName("IsAttackAnimationPlay")))
+	{
+		//애니메이션이 이미 실행중이면 작업생략하지만 다른노드로 넘어가면 안되므로 succeeded로 넘겨줌
+		return EBTNodeResult::Succeeded;
+	}
+
 	
 	float Speed = pMonster->GetMovementComponent()->Velocity.Size();
 
@@ -37,6 +43,7 @@ EBTNodeResult::Type UBTTMonAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp
 	case EMON_TYPE::MELEE:
 		{
 			pMonster->ChangeState(EMON_STATE::MELEE_ATTACK);
+			OwnerComp.GetBlackboardComponent()->SetValueAsBool(FName("IsAttackAnimationPlay"), true);
 		}
 		break;
 	case EMON_TYPE::RANGE:
