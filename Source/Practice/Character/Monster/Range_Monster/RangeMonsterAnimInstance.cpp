@@ -2,6 +2,8 @@
 
 
 #include "RangeMonsterAnimInstance.h"
+#include "AIController.h"
+#include "BehaviorTree/BlackboardComponent.h"
 #include "../Monster_Base.h"
 
 void URangeMonsterAnimInstance::NativeInitializeAnimation()
@@ -24,4 +26,18 @@ void URangeMonsterAnimInstance::NativeUpdateAnimation(float _fDeltaTime)
 
 	//오너의 state를 매번 받아와서 갱신하고 그거에 맞춰 애니메이션 재상
 	m_State = Monster->GetState();
+}
+
+void URangeMonsterAnimInstance::AnimNotify_RangeMonAtt()
+{
+}
+
+void URangeMonsterAnimInstance::AnimNotify_RangeAttEnd()
+{
+	AAIController* moncon = Cast<AAIController>(Monster->GetController());
+
+	if (moncon != nullptr)
+	{
+		moncon->GetBlackboardComponent()->SetValueAsBool(FName("IsAttackAnimationPlay"), false);
+	}
 }

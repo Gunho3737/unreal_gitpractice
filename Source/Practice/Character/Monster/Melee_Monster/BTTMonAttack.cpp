@@ -49,6 +49,7 @@ EBTNodeResult::Type UBTTMonAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp
 	case EMON_TYPE::RANGE:
 		{
 			pMonster->ChangeState(EMON_STATE::RANGE_ATTACK);
+			OwnerComp.GetBlackboardComponent()->SetValueAsBool(FName("IsAttackAnimationPlay"), true);
 		}
 		break;
 	case EMON_TYPE::BOSS:

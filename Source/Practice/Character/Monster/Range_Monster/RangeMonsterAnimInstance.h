@@ -29,9 +29,9 @@ public:
 	virtual void NativeUpdateAnimation(float _fDeltaTime) override;
 
 public:
-	//UFUNCTION()
-	//void AnimNotify_RangeMonAtt();
-	//
-	//UFUNCTION()
-	//void AnimNotify_RangeAttEnd();
+	UFUNCTION()
+	void AnimNotify_RangeMonAtt();
+	
+	UFUNCTION()
+	void AnimNotify_RangeAttEnd();
 };
