@@ -29,6 +29,17 @@ EBTNodeResult::Type UBTTMonAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp
 		return EBTNodeResult::Succeeded;
 	}
 
+	//몬스터를 플레이어 방향으로 회전시키기
+	UObject* pObject = OwnerComp.GetBlackboardComponent()->GetValueAsObject(FName("TraceTarget"));
+	if (IsValid(pObject))
+	{
+		AActor* pTarget = Cast<AActor>(pObject);
+		FVector PlayerPos = pTarget->GetActorLocation();
+		//플레이어 위치로 회전
+		//지금 적용 안되는중 다른거 쓰기
+		pMonster->GetActorRotation().RotateVector(PlayerPos);
+	}
+
 	
 	float Speed = pMonster->GetMovementComponent()->Velocity.Size();
 
