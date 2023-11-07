@@ -2,6 +2,7 @@
 
 
 #include "RangeMonsterBullet.h"
+#include "../FPSPopol/Player/FPSPlayer.h"
 #include "Components/DecalComponent.h"
 
 void ARangeMonsterBullet::BeginPlay()
@@ -34,7 +35,8 @@ void ARangeMonsterBullet::Tick(float DeltaTime)
 
 void ARangeMonsterBullet::BulletDeath()
 {
-	GetSphere()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	//GetSphere()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	death = true;
 }
 
 ARangeMonsterBullet::ARangeMonsterBullet()
@@ -51,6 +53,13 @@ ARangeMonsterBullet::~ARangeMonsterBullet()
 
 void ARangeMonsterBullet::OnHit(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, FVector _vNormalImpulse, const FHitResult& _Hit)
 {
+	AFPSPlayer* Actor = Cast<AFPSPlayer>(_OtherActor);
+
+	if (IsValid(Actor))
+	{
+		Actor->HPChange(-20.f);
+	}
+
 	BulletDeath();
 }
 
