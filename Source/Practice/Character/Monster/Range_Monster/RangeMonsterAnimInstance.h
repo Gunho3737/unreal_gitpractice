@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
 #include "../../../Header/GlobalHeader.h"
+#include "../../../Projectile/RangeMonsterBullet.h"
 #include "RangeMonsterAnimInstance.generated.h"
 
 /**
@@ -34,4 +35,9 @@ public:
 	
 	UFUNCTION()
 	void AnimNotify_RangeAttEnd();
+
+private:
+	//ÃÑ¾Ë
+	UPROPERTY(EditDefaultsOnly, Category = Object)
+	TSubclassOf<ARangeMonsterBullet> m_MonBullet;
 };
