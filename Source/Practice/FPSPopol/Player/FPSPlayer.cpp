@@ -261,6 +261,18 @@ void AFPSPlayer::Tick(float DeltaTime)
 	CharHud->SetPlayerHPRatio(HPRatio);
 
 
+	if (DeathCheck() == true)
+	{
+		// 플레이어 컨트롤러의 입력모드를 UI 모드로 전환한다.
+		APlayerController* pController = GetWorld()->GetFirstPlayerController();
+
+		FInputModeUIOnly uionly{};
+		pController->SetInputMode(uionly);
+		pController->bShowMouseCursor = true;
+	}
+
+
+
 }
 
 // Called to bind functionality to input

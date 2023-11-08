@@ -79,6 +79,8 @@ public:
 
 	void BulletReload();
 	void HPChange(float _DMG);
+
+	//현재 사망상태인지 아닌지 체크용 함수, true이면 사망상태
 	bool DeathCheck();
 
 protected:
