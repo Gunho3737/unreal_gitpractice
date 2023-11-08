@@ -79,6 +79,7 @@ public:
 
 	void BulletReload();
 	void HPChange(float _DMG);
+	bool DeathCheck();
 
 protected:
 	// Called when the game starts or when spawned

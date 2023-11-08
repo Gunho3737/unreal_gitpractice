@@ -19,6 +19,7 @@ void UFPSPlayerAnimInstance::NativeBeginPlay()
 	}
 
 	//처음애님인스턴스의 hp는 0만 아니도록 세팅
+	//블루프린터에서도 세팅했다
 	CurHP = 100.f;
 }
 

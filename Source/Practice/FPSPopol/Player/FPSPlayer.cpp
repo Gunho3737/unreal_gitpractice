@@ -57,6 +57,11 @@ AFPSPlayer::~AFPSPlayer()
 
 void AFPSPlayer::Move(const FInputActionInstance& _Instance)
 {
+	if (DeathCheck() == true)
+	{
+		return;
+	}
+
 	//인풋값을 벡터2d로 받아옴
 	FVector2D vInput = _Instance.GetValue().Get<FVector2D>();
 
@@ -77,6 +82,12 @@ void AFPSPlayer::Move(const FInputActionInstance& _Instance)
 
 void AFPSPlayer::Rotation(const FInputActionInstance& _Instance)
 {
+	if (DeathCheck() == true)
+	{
+		return;
+	}
+
+
 	//rotate 구조를 공부할것
 	//카메라 암을 돌리는거로 카메라를 회전
 
@@ -100,11 +111,23 @@ void AFPSPlayer::Rotation(const FInputActionInstance& _Instance)
 
 void AFPSPlayer::Jump(const FInputActionInstance& _Instance)
 {
+	if (DeathCheck() == true)
+	{
+		return;
+	}
+
+
 	Super::Jump();
 }
 
 void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 {
+	if (DeathCheck() == true)
+	{
+		return;
+	}
+
+
 	bool bToggle = _Instance.GetValue().Get<bool>();
 
 	if (!IsValid(GetMesh()->GetAnimInstance()) || AttackMontage.IsNull())
@@ -183,6 +206,19 @@ void AFPSPlayer::HPChange(float _DMG)
 	}
 }
 
+bool AFPSPlayer::DeathCheck()
+{
+	if (CurHP <= 0.0f)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
 // Called when the game starts or when spawned
 void AFPSPlayer::BeginPlay()
 {
@@ -223,12 +259,8 @@ void AFPSPlayer::Tick(float DeltaTime)
 
 	float HPRatio = CurHP / MaxHP;
 	CharHud->SetPlayerHPRatio(HPRatio);
-	
-	//체력이 0밑으로 떨어지면
-	if (CurHP <= 0.f)
-	{
 
-	}
+
 }
 
 // Called to bind functionality to input
