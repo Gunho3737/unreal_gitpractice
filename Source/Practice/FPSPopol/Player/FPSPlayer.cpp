@@ -269,6 +269,7 @@ void AFPSPlayer::Tick(float DeltaTime)
 		FInputModeUIOnly uionly{};
 		pController->SetInputMode(uionly);
 		pController->bShowMouseCursor = true;
+		CharHud->UIOff();
 	}
 
 

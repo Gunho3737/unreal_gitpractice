@@ -17,10 +17,12 @@ class PRACTICE_API UFPS_MainWidget : public UUserWidget
 
 private:
 	UFPS_PlayerInfoWidget* m_PlayerInfo;
-
+	class UImage* m_Crosshair;
 
 public:
 	void SetPlayerHPRatio(float _Ratio);
+
+	void UIOff();
 
 	UFPS_PlayerInfoWidget* GetPlayerInfoWidget() { return m_PlayerInfo; }
 
