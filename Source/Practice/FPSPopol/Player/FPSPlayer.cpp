@@ -181,10 +181,6 @@ void AFPSPlayer::HPChange(float _DMG)
 	{
 		CurHP = MaxHP;
 	}
-
-	float HPRatio = CurHP / MaxHP;
-
-	CharHud->SetPlayerHPRatio(HPRatio);
 }
 
 // Called when the game starts or when spawned
@@ -224,6 +220,15 @@ void AFPSPlayer::BeginPlay()
 void AFPSPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	float HPRatio = CurHP / MaxHP;
+	CharHud->SetPlayerHPRatio(HPRatio);
+	
+	//체력이 0밑으로 떨어지면
+	if (CurHP <= 0.f)
+	{
+
+	}
 }
 
 // Called to bind functionality to input

@@ -38,8 +38,11 @@ public:
 	int bullet;
 
 	//최대 HP
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	float MaxHP;
+
 	//현재 HP
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	float CurHP;
 
 private:

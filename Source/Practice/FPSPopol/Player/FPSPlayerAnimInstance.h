@@ -49,6 +49,11 @@ public:
 	//공격모션 몽타쥬를 위한 가중치 float
 	UPROPERTY(Editanywhere, BlueprintReadWrite, Category = "데이터")
 	float	 AttackWeight;
+
+	//Death 상태로 들어가기 위한 CurHP
+	UPROPERTY(Editanywhere, BlueprintReadWrite, Category = "데이터")
+	float CurHP;
+
 public:
 	virtual void NativeInitializeAnimation() override;
 

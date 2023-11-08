@@ -17,6 +17,9 @@ void UFPSPlayerAnimInstance::NativeBeginPlay()
 		//캐릭터의 무브먼트 포인트를 저장해서 애님인스턴스에서 정보를 받아올수 있게함
 		Movement = Character->GetCharacterMovement();
 	}
+
+	//처음애님인스턴스의 hp는 0만 아니도록 세팅
+	CurHP = 100.f;
 }
 
 void UFPSPlayerAnimInstance::NativeUpdateAnimation(float _fDeltaTime)
@@ -28,6 +31,9 @@ void UFPSPlayerAnimInstance::NativeUpdateAnimation(float _fDeltaTime)
 		//캐릭터와 무브먼트가 없으면 리턴
 		return;
 	}
+
+	//현재 HP를 캐릭터에서 받아옴
+	CurHP = Character->CurHP;
 
 	//속력을 받아와서
 	MoveSpeed = Movement->Velocity.Size2D();
