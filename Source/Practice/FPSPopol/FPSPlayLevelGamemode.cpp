@@ -19,6 +19,11 @@ AFPSPlayLevelGamemode::AFPSPlayLevelGamemode()
 		m_MainHudClass = HudFinder.Class;
 	}
 
+	ConstructorHelpers::FClassFinder<UUserWidget> GameOverHudFinder(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/FPSPopol/Character/CharUI/BPC_GameOverWidget.BPC_GameOverWidget_C'"));
+	if (GameOverHudFinder.Succeeded())
+	{
+		m_GameOverClass = GameOverHudFinder.Class;
+	}
 }
 
 AFPSPlayLevelGamemode::~AFPSPlayLevelGamemode()
@@ -41,6 +46,23 @@ void AFPSPlayLevelGamemode::BeginPlay()
 		{
 			//뷰포트에 위젯 추가
 			m_MainHUD->AddToViewport();
+		}
+	}
+
+	if (IsValid(m_GameOverClass))
+	{
+		m_GameoverWidget = Cast<UGameoverWidget>(CreateWidget(GetWorld(), m_GameOverClass));
+		if (!IsValid(m_GameoverWidget))
+		{
+			// 다운캐스팅 실패 ==> UMainHUD_Base 로부터 파생된 블루프린트가 아니다.
+
+		}
+		else
+		{
+			//뷰포트에 위젯 추가
+			//화면 전체 가리도록 세팅할것
+			m_GameoverWidget->AddToViewport();
+			m_GameoverWidget->SetVisibility(ESlateVisibility::Hidden);
 		}
 	}
 }
