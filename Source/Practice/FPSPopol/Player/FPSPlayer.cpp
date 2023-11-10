@@ -243,6 +243,7 @@ void AFPSPlayer::BeginPlay()
 	if (IsValid(FGM))
 	{
 		CharHud = FGM->GetMainHUD();
+		GameOverHUD = FGM->GetGameOverHUD();
 	}
 
 	//플레이어 HPBar테스트
@@ -270,6 +271,8 @@ void AFPSPlayer::Tick(float DeltaTime)
 		pController->SetInputMode(uionly);
 		pController->bShowMouseCursor = true;
 		CharHud->UIOff();
+		GameOverHUD->SetVisibility(ESlateVisibility::Visible);
+		GameOverHUD->StartFadeIn();
 	}
 
 

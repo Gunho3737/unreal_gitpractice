@@ -31,5 +31,5 @@ private:
 	UGameoverWidget* m_GameoverWidget;
 public:
 	UFPS_MainWidget* GetMainHUD() { return m_MainHUD; }
-	//UGameoverWidget* GetGameOverHUD() { return UGameoverWidget; }
+	UGameoverWidget* GetGameOverHUD() { return m_GameoverWidget; }
 };

@@ -23,9 +23,15 @@ private:
 	UImage* BackgroundColorImage;
 	UImage* GameOverImage;
 
+	bool fadeon;
+	float opacity;
+
 public:
 	virtual void NativeConstruct() override;
 	virtual void NativeTick(const FGeometry& _geo, float _DT) override;
+
+	void StartFadeIn();
+	void SetWidgetOpacity(float _opacity);
 
 public:
 	UFUNCTION()

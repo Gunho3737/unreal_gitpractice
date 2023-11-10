@@ -23,12 +23,47 @@ void UGameoverWidget::NativeConstruct()
 		RestartButton->OnHovered.AddDynamic(this, &UGameoverWidget::RestartBtnHovered);
 		RestartButton->OnUnhovered.AddDynamic(this, &UGameoverWidget::RestartBtnUnHovered);
 	}
+
+	fadeon = false;
+
+	SetWidgetOpacity(0.0f);
+
 }
 
 void UGameoverWidget::NativeTick(const FGeometry& _geo, float _DT)
 {
 	Super::NativeTick(_geo, _DT);
+
+	if (fadeon == true)
+	{
+		//2초가 되면 오파시티 1 되서 보임
+		opacity += (_DT * 0.5f);
+		if (opacity <= 1.0f)
+		{
+			SetWidgetOpacity(opacity);
+		}
+	}
+
 }
+
+void UGameoverWidget::StartFadeIn()
+{
+	if (fadeon == true)
+	{
+		return;
+	}
+
+	fadeon = true;
+	opacity = 0.0f;
+}
+
+void UGameoverWidget::SetWidgetOpacity(float _opacity)
+{
+	RestartButton->SetRenderOpacity(_opacity);
+	BackgroundColorImage->SetRenderOpacity(_opacity);
+	GameOverImage->SetRenderOpacity(_opacity);
+}
+
 
 void UGameoverWidget::RestartBtnClicked()
 {
