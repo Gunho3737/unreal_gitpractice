@@ -65,4 +65,14 @@ void AFPSPlayLevelGamemode::BeginPlay()
 			m_GameoverWidget->SetVisibility(ESlateVisibility::Hidden);
 		}
 	}
+
+
+
+	// 플레이어 컨트롤러의 입력모드를 Game 모드로 전환한다.
+	APlayerController* pController = GetWorld()->GetFirstPlayerController();
+
+	FInputModeGameOnly gonly{};
+	pController->SetInputMode(gonly);
+	pController->bShowMouseCursor = false;
+
 }

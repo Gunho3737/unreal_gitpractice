@@ -35,7 +35,7 @@ public:
 
 public:
 	UFUNCTION()
-		void RestartBtnClicked();
+		void RestartBtnPressed();
 	UFUNCTION()
 		void RestartBtnHovered();
 	UFUNCTION()

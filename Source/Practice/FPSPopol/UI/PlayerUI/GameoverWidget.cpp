@@ -19,7 +19,7 @@ void UGameoverWidget::NativeConstruct()
 	}
 	else
 	{
-		RestartButton->OnClicked.AddDynamic(this, &UGameoverWidget::RestartBtnClicked);
+		RestartButton->OnPressed.AddDynamic(this, &UGameoverWidget::RestartBtnPressed);
 		RestartButton->OnHovered.AddDynamic(this, &UGameoverWidget::RestartBtnHovered);
 		RestartButton->OnUnhovered.AddDynamic(this, &UGameoverWidget::RestartBtnUnHovered);
 	}
@@ -65,9 +65,10 @@ void UGameoverWidget::SetWidgetOpacity(float _opacity)
 }
 
 
-void UGameoverWidget::RestartBtnClicked()
+void UGameoverWidget::RestartBtnPressed()
 {
-	LOG(LogTemp, Warning, TEXT("Restart BtnClicked"));
+	LOG(LogTemp, Warning, TEXT("Restart BtnPressed"));
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("StartLevel"));
 }
 
 void UGameoverWidget::RestartBtnHovered()
@@ -75,7 +76,7 @@ void UGameoverWidget::RestartBtnHovered()
 	LOG(LogTemp, Warning, TEXT("Restart Hovered"));
 
 	UWidgetBlueprintGeneratedClass* pWidgetClass = GetWidgetTreeOwningClass();
-
+	
 	for (int32 i = 0; i < pWidgetClass->Animations.Num(); ++i)
 	{
 		if (pWidgetClass->Animations[i].GetName() == TEXT("RestartBtnAnimation_INST"))
@@ -91,7 +92,7 @@ void UGameoverWidget::RestartBtnUnHovered()
 {
 	LOG(LogTemp, Warning, TEXT("Restart UnHovered"));
 	UWidgetBlueprintGeneratedClass* pWidgetClass = GetWidgetTreeOwningClass();
-
+	
 	for (int32 i = 0; i < pWidgetClass->Animations.Num(); ++i)
 	{
 		if (pWidgetClass->Animations[i].GetName() == TEXT("RestartBtnAnimation_INST"))
