@@ -42,7 +42,7 @@ void UStartMenuWidget::StartBtnClicked()
 {
 	UE_LOG(LogTemp, Warning, TEXT("StartButton Click"));
 
-	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MyLevel"));
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("FPSPlayLevel"));
 }
 
 void UStartMenuWidget::StartBtnHovered()

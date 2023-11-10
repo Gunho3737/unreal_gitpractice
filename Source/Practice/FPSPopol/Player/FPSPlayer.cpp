@@ -274,9 +274,6 @@ void AFPSPlayer::Tick(float DeltaTime)
 		GameOverHUD->SetVisibility(ESlateVisibility::Visible);
 		GameOverHUD->StartFadeIn();
 	}
-
-
-
 }
 
 // Called to bind functionality to input
