@@ -132,11 +132,11 @@ void ACharacter2D_Base::PlayFlipbook(EPLAYER2D_STATE _CurState, EPLAYER2D_DIR _C
 
 void ACharacter2D_Base::MoveFunction(const FInputActionInstance& _Instance)
 {
-	LOG(Player, Warning, TEXT("2D Char MoveFunc"));
+	LOG(PlayerLog, Warning, TEXT("2D Char MoveFunc"));
 }
 
 void ACharacter2D_Base::JumpFunction(const FInputActionInstance& _Instance)
 {
-	LOG(Player, Warning, TEXT("2D Char JumpFunc"));
+	LOG(PlayerLog, Warning, TEXT("2D Char JumpFunc"));
 	Jump();
 }

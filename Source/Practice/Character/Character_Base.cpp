@@ -376,7 +376,7 @@ void ACharacter_Base::SwordWave(const FInputActionInstance& _Instance)
 
 void ACharacter_Base::OpenInventory(const FInputActionInstance& _Instance)
 {
-	LOG(Player, Warning, TEXT("Inventory UI Open"));
+	LOG(PlayerLog, Warning, TEXT("Inventory UI Open"));
 	UInventoryManager::GetInst(GetWorld())->OpenInventoryUI();
 }
 

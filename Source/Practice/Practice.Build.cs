@@ -19,7 +19,9 @@ public class Practice : ModuleRules
             , "GameplayTasks"
             , "NavigationSystem"
 			, "UMG"
-			, "Paper2D"});
+			, "Paper2D"
+            , "MovieScene"
+            , "LevelSequence"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

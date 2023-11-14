@@ -1,7 +1,7 @@
 #include "define.h"
 
 
-DEFINE_LOG_CATEGORY(Player);
+DEFINE_LOG_CATEGORY(PlayerLog);
 
 DEFINE_LOG_CATEGORY(Monster);
 

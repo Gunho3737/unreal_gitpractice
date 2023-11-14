@@ -4,6 +4,7 @@
 #include "FPSPlayLevelGamemode.h"
 
 
+
 AFPSPlayLevelGamemode::AFPSPlayLevelGamemode()
 {
 	ConstructorHelpers::FClassFinder<APawn> Finder(TEXT("/Script/Engine.Blueprint'/Game/FPSPopol/Character/BPC_FPSPlayer.BPC_FPSPlayer_C'"));
@@ -34,6 +35,20 @@ void AFPSPlayLevelGamemode::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (m_StartSeq != nullptr)
+	{
+		FMovieSceneSequencePlaybackSettings Settings = {};
+		Settings.bHideHud = true;
+		Settings.bHidePlayer = true;
+
+		m_SequencePlayer
+			= ULevelSequencePlayer::CreateLevelSequencePlayer(GetWorld()
+				, m_StartSeq, Settings, m_SequenceActor);
+
+		m_SequencePlayer->Play();
+	}
+
+
 	if (IsValid(m_MainHudClass))
 	{
 		m_MainHUD = Cast<UFPS_MainWidget>(CreateWidget(GetWorld(), m_MainHudClass));
@@ -46,6 +61,7 @@ void AFPSPlayLevelGamemode::BeginPlay()
 		{
 			//뷰포트에 위젯 추가
 			m_MainHUD->AddToViewport();
+			//m_MainHUD->SetVisibility(ESlateVisibility::Hidden);
 		}
 	}
 
@@ -68,6 +84,8 @@ void AFPSPlayLevelGamemode::BeginPlay()
 
 
 
+
+
 	// 플레이어 컨트롤러의 입력모드를 Game 모드로 전환한다.
 	APlayerController* pController = GetWorld()->GetFirstPlayerController();
 
@@ -75,4 +93,10 @@ void AFPSPlayLevelGamemode::BeginPlay()
 	pController->SetInputMode(gonly);
 	pController->bShowMouseCursor = false;
 
+}
+
+void AFPSPlayLevelGamemode::StartSequenceEnd()
+{
+	//시퀀스 끝날때는 UI보임
+	//m_MainHUD->SetVisibility(ESlateVisibility::Visible);
 }

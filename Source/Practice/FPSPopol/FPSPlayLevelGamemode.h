@@ -7,11 +7,20 @@
 #include "Blueprint/UserWidget.h"
 #include "UI/PlayerUI/FPS_MainWidget.h"
 #include "UI/PlayerUI/GameoverWidget.h"
+#include "../Header/GlobalHeader.h"
+
+#include "LevelSequence/Public/LevelSequence.h"
+#include "LevelSequence/Public/LevelSequencePlayer.h"
+#include "LevelSequence/Public/LevelSequenceActor.h"
+
+
 #include "FPSPlayLevelGamemode.generated.h"
 
 /**
  * 
  */
+
+
 UCLASS()
 class PRACTICE_API AFPSPlayLevelGamemode : public AGameModeBase
 {
@@ -29,7 +38,17 @@ private:
 
 	TSubclassOf<UUserWidget>	m_GameOverClass;
 	UGameoverWidget* m_GameoverWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	ULevelSequence* m_StartSeq;
+
+	ULevelSequencePlayer* m_SequencePlayer;
+	ALevelSequenceActor* m_SequenceActor;
+
 public:
 	UFPS_MainWidget* GetMainHUD() { return m_MainHUD; }
 	UGameoverWidget* GetGameOverHUD() { return m_GameoverWidget; }
+
+	void StartSequenceEnd();
+
 };
