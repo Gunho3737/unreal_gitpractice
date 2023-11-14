@@ -54,6 +54,8 @@ void UMonster_InfoWidget::NativeConstruct()
 		//외부에서 들어온 세팅값을 멤버변수로 저장한 다음
 		//제대로 생성되면 멤버변수를 가져와 내부에서 세팅
 		m_Name->SetText(m_NameSet);
+		//이름 안보이게 끔
+		m_Name->SetVisibility(ESlateVisibility::Hidden);
 		m_HPBar->SetPercent(m_Ratio);
 	}
 

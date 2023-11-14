@@ -10,6 +10,11 @@ void UFPS_MainWidget::SetPlayerHPRatio(float _Ratio)
 	m_PlayerInfo->SetHPBarRatio(_Ratio);
 }
 
+void UFPS_MainWidget::SetBulletInfo(int _info)
+{
+	m_PlayerInfo->SetBulletNumber(_info);
+}
+
 void UFPS_MainWidget::UIOff()
 {
 	m_Crosshair->SetVisibility(ESlateVisibility::Hidden);

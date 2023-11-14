@@ -14,7 +14,7 @@
 
 // Sets default values
 AFPSPlayer::AFPSPlayer()
-	: ShootAnimationPlay(false), ReloadAnimationPlay(false), bullet(50), MaxHP(100.0f), CurHP(100.0f)
+	: ShootAnimationPlay(false), ReloadAnimationPlay(false), bullet(15), MaxHP(100.0f), CurHP(100.0f)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -193,7 +193,7 @@ void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 void AFPSPlayer::BulletReload()
 {
 	//ÃÑ¾Ë °¹¼ö ¸®·ÎµåÇÏ±â
-	bullet = 50;
+	bullet = 15;
 }
 
 void AFPSPlayer::HPChange(float _DMG)
@@ -251,6 +251,7 @@ void AFPSPlayer::BeginPlay()
 	GetCharacterMovement()->MaxWalkSpeed = 600.f;
 
 	CharHud->SetPlayerHPRatio(1.0f);
+	CharHud->SetBulletInfo(15);
 }
 
 // Called every frame
@@ -260,7 +261,7 @@ void AFPSPlayer::Tick(float DeltaTime)
 
 	float HPRatio = CurHP / MaxHP;
 	CharHud->SetPlayerHPRatio(HPRatio);
-
+	CharHud->SetBulletInfo(bullet);
 
 	if (DeathCheck() == true)
 	{

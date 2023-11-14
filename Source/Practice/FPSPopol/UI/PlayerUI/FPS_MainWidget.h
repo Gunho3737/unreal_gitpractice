@@ -21,6 +21,7 @@ private:
 
 public:
 	void SetPlayerHPRatio(float _Ratio);
+	void SetBulletInfo(int _info);
 
 	void UIOff();
 

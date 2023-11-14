@@ -16,9 +16,11 @@ class PRACTICE_API UFPS_PlayerInfoWidget : public UUserWidget
 	
 private:
 	class UProgressBar* m_HPBar;
+	class UTextBlock* m_Bullet;
 
 public:
 	void SetHPBarRatio(float _ratio);
+	void SetBulletNumber(int _num);
 
 public:
 	virtual void NativeConstruct() override;
