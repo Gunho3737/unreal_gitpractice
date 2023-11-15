@@ -57,7 +57,7 @@ void ARangeMonsterBullet::OnHit(UPrimitiveComponent* _PrimitiveCom, AActor* _Oth
 
 	if (IsValid(Actor))
 	{
-		Actor->HPChange(-21.f);
+		Actor->HPChange(-5.f);
 	}
 
 	BulletDeath();

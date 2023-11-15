@@ -49,6 +49,7 @@ void UBTTMonsterDeathTask::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* No
 
 	if (time > 1.1f)
 	{
+		time = 0.0f;
 		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 		pMonster->Destroy();
 		return;

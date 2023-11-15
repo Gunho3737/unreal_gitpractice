@@ -37,7 +37,7 @@ void UMeleeMonsterAnimInstance::AnimNotify_MeleeMonAtt()
 	FHitResult ColResult;
 	//내가 세팅해준 세팅값이 들어간 객체
 
-	FVector vec = { 200.f, 200.f, 200.f };
+	FVector vec = { 170.f, 170.f, 170.f };
 
 	//스윕 싱글
 	bool col = GetWorld()->SweepSingleByChannel(ColResult	//결과값이 들어갈 HitResult
@@ -47,7 +47,7 @@ void UMeleeMonsterAnimInstance::AnimNotify_MeleeMonAtt()
 		, FCollisionShape::MakeBox(vec)	//충돌체의 모양듬
 	);
 
-	DrawDebugBox(GetWorld(), Monster->GetActorLocation(), vec, FColor::Green, false, 10.f);
+	//DrawDebugBox(GetWorld(), Monster->GetActorLocation(), vec, FColor::Green, false, 3.f);
 
 	if (col == true)
 	{
@@ -56,7 +56,7 @@ void UMeleeMonsterAnimInstance::AnimNotify_MeleeMonAtt()
 		if (IsValid(pAB))
 		{
 			LOG(LogTemp, Warning, TEXT("MeleeMonster Attack Success"));
-			pAB->HPChange(-20.f);
+			pAB->HPChange(-10.f);
 		}
 	}
 

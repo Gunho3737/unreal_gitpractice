@@ -112,7 +112,6 @@ void AMonster_Base::BeginPlay()
 		default:
 			break;
 		}
-		pMonInfoWidget->SetTextBlock("MonTest");
 		pMonInfoWidget->SetHPRatio(1.f);
 	}
 
@@ -133,6 +132,18 @@ void AMonster_Base::Tick(float DeltaTime)
 	float Ratio = CurHP / MaxHP;
 
 	pMonInfoWidget->SetHPRatio(Ratio);
+
+	UObject* player = pAIController->GetBlackboardComponent()->GetValueAsObject(FName("Target"));
+
+	//플레이어 탐지를 못햇을 경우 몬스터 UI 끄기
+	if (player == nullptr)
+	{
+		OffMonUI();
+	}
+	else
+	{
+		pMonInfoWidget->SetMonUIVisibilty(ESlateVisibility::Visible);
+	}
 
 	if (m_State == EMON_STATE::DEAD)
 	{
