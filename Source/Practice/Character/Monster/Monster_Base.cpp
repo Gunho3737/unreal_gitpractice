@@ -133,6 +133,9 @@ void AMonster_Base::Tick(float DeltaTime)
 
 	pMonInfoWidget->SetHPRatio(Ratio);
 
+	//시퀀스에서 실행시킨 액터를 위해, 스폰 포지션이 아닌 현재 위치기준으로 이동
+	pAIController->GetBlackboardComponent()->SetValueAsVector(FName("SpawnPosition"), GetActorLocation());
+
 	UObject* player = pAIController->GetBlackboardComponent()->GetValueAsObject(FName("Target"));
 
 	//플레이어 탐지를 못햇을 경우 몬스터 UI 끄기
