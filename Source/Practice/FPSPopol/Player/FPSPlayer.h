@@ -36,6 +36,9 @@ public:
 	//재장전 애니메이션 체크, true면 애니메이션 실행중 아니면 실행아님
 	bool ReloadAnimationPlay;
 
+	//시퀀스 재생여부체크용 bool, true이면 현재 시퀀스 재생중 false이면 현재 시퀀스 재생중 아님
+	bool SeqPlay;
+
 	//잔탄 갯수
 	int bullet;
 
@@ -84,6 +87,10 @@ public:
 
 	//현재 사망상태인지 아닌지 체크용 함수, true이면 사망상태
 	bool DeathCheck();
+	//현재 이동여부를 체크하는 함수
+	bool MovementStopCheck();
+
+	void SetSeqPlay(bool _play);
 
 protected:
 	// Called when the game starts or when spawned

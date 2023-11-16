@@ -14,7 +14,7 @@
 
 // Sets default values
 AFPSPlayer::AFPSPlayer()
-	: ShootAnimationPlay(false), ReloadAnimationPlay(false), bullet(15), MaxHP(100.0f), CurHP(100.0f)
+	: ShootAnimationPlay(false), ReloadAnimationPlay(false), bullet(15), MaxHP(100.0f), CurHP(100.0f), SeqPlay(false)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -57,7 +57,7 @@ AFPSPlayer::~AFPSPlayer()
 
 void AFPSPlayer::Move(const FInputActionInstance& _Instance)
 {
-	if (DeathCheck() == true)
+	if (MovementStopCheck() == true)
 	{
 		return;
 	}
@@ -82,7 +82,7 @@ void AFPSPlayer::Move(const FInputActionInstance& _Instance)
 
 void AFPSPlayer::Rotation(const FInputActionInstance& _Instance)
 {
-	if (DeathCheck() == true)
+	if (MovementStopCheck() == true)
 	{
 		return;
 	}
@@ -111,7 +111,7 @@ void AFPSPlayer::Rotation(const FInputActionInstance& _Instance)
 
 void AFPSPlayer::Jump(const FInputActionInstance& _Instance)
 {
-	if (DeathCheck() == true)
+	if (MovementStopCheck() == true)
 	{
 		return;
 	}
@@ -122,7 +122,7 @@ void AFPSPlayer::Jump(const FInputActionInstance& _Instance)
 
 void AFPSPlayer::Attack(const FInputActionInstance& _Instance)
 {
-	if (DeathCheck() == true)
+	if (MovementStopCheck() == true)
 	{
 		return;
 	}
@@ -206,6 +206,7 @@ void AFPSPlayer::HPChange(float _DMG)
 	}
 }
 
+
 bool AFPSPlayer::DeathCheck()
 {
 	if (CurHP <= 0.0f)
@@ -217,6 +218,30 @@ bool AFPSPlayer::DeathCheck()
 		return false;
 	}
 
+}
+
+
+bool AFPSPlayer::MovementStopCheck()
+{
+	//체력0이면 이동불가
+	if (DeathCheck() == true)
+	{
+		return true;
+	}
+	
+	//시퀀스 플레이 중이면 이동불가
+	if (SeqPlay == true)
+	{
+		return true;
+	}
+
+	return false;
+
+}
+
+void AFPSPlayer::SetSeqPlay(bool _play)
+{
+	SeqPlay = _play;
 }
 
 // Called when the game starts or when spawned
