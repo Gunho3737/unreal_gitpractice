@@ -27,6 +27,10 @@ EBTNodeResult::Type UBTTMonTrace::ExecuteTask(UBehaviorTreeComponent& OwnerComp,
 		return EBTNodeResult::Failed;
 	}
 
+
+	//trace에 들어온 시점에선 무조건 발사애니메이션은 false로 초기화됨
+	OwnerComp.GetBlackboardComponent()->SetValueAsBool(FName("IsAttackAnimationPlay"), false);
+
 	// 행동 시킬 AIController 를 가져온다.
 	AAIController* pController = OwnerComp.GetAIOwner();
 
