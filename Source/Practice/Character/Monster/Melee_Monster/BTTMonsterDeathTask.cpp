@@ -40,7 +40,7 @@ EBTNodeResult::Type UBTTMonsterDeathTask::ExecuteTask(UBehaviorTreeComponent& Ow
 void UBTTMonsterDeathTask::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
-	LOG(PlayerLog, Warning, TEXT("Death TickTask On"));
+	//LOG(PlayerLog, Warning, TEXT("Death TickTask On"));
 
 	AMonster_Base* pMonster = Cast<AMonster_Base>(OwnerComp.GetAIOwner()->GetPawn());
 	time += DeltaSeconds * 0.2f;
