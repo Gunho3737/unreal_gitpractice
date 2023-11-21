@@ -2,6 +2,7 @@
 
 
 #include "GameEndPortalActor.h"
+#include "../Player/FPSPlayer.h"
 
 // Sets default values
 AGameEndPortalActor::AGameEndPortalActor()
@@ -23,6 +24,8 @@ void AGameEndPortalActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	m_Box->OnComponentBeginOverlap.AddDynamic(this, &AGameEndPortalActor::BeginOverlap);
+	m_Box->OnComponentEndOverlap.AddDynamic(this, &AGameEndPortalActor::EndOverlap);
 }
 
 // Called every frame
@@ -30,5 +33,19 @@ void AGameEndPortalActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AGameEndPortalActor::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index, bool _bFromSweep, const FHitResult& _HitResult)
+{
+	AFPSPlayer* FPlayer = Cast<AFPSPlayer>(_OtherActor);
+
+	if (IsValid(FPlayer))
+	{
+		LOG(Monster, Warning, TEXT("PlayerOvelLap to Teleporter"));
+	}
+}
+
+void AGameEndPortalActor::EndOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index)
+{
 }
 
