@@ -30,6 +30,8 @@ private:
 
 	int MonsterCount;
 
+	class AFPSPlayer* Player;
+
 public:
 	ABossClearcheckTriggerBox();
 
@@ -43,4 +45,8 @@ public:
 	UFUNCTION()
 	void EndTrigger(AActor* _TriggerActor, AActor* _OtherActor);
 
+
+public:
+	UFUNCTION()
+	void TeleporterSeqEnd();
 };
