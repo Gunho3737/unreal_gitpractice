@@ -25,6 +25,13 @@ AFPSPlayLevelGamemode::AFPSPlayLevelGamemode()
 	{
 		m_GameOverClass = GameOverHudFinder.Class;
 	}
+
+	ConstructorHelpers::FClassFinder<UUserWidget> GameClasHudFinder(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/FPSPopol/ClearLevelUI/BPC_GameClearWidget.BPC_GameClearWidget_C'"));
+	if (GameClasHudFinder.Succeeded())
+	{
+		m_GameClearClass = GameClasHudFinder.Class;
+	}
+
 }
 
 AFPSPlayLevelGamemode::~AFPSPlayLevelGamemode()
@@ -81,6 +88,25 @@ void AFPSPlayLevelGamemode::BeginPlay()
 			m_GameoverWidget->SetVisibility(ESlateVisibility::Hidden);
 		}
 	}
+
+	if (IsValid(m_GameClearClass))
+	{
+		m_GameClearWidget = Cast<UGameClearWidget>(CreateWidget(GetWorld(), m_GameClearClass));
+		if (!IsValid(m_GameClearWidget))
+		{
+			// 다운캐스팅 실패 ==> UMainHUD_Base 로부터 파생된 블루프린트가 아니다.
+
+		}
+		else
+		{
+			//뷰포트에 위젯 추가
+			//화면 전체 가리도록 세팅할것
+			m_GameClearWidget->AddToViewport();
+			m_GameClearWidget->SetVisibility(ESlateVisibility::Hidden);
+			m_GameClearWidget->SetWidgetOpacity(0.0f);
+		}
+	}
+
 
 
 

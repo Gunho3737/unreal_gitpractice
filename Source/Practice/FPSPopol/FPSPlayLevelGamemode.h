@@ -7,6 +7,7 @@
 #include "Blueprint/UserWidget.h"
 #include "UI/PlayerUI/FPS_MainWidget.h"
 #include "UI/PlayerUI/GameoverWidget.h"
+#include "../UI/GameClearWidget.h"
 #include "../Header/GlobalHeader.h"
 
 #include "LevelSequence/Public/LevelSequence.h"
@@ -39,6 +40,9 @@ private:
 	TSubclassOf<UUserWidget>	m_GameOverClass;
 	UGameoverWidget* m_GameoverWidget;
 
+	TSubclassOf<UUserWidget>	m_GameClearClass;
+	UGameClearWidget* m_GameClearWidget;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	ULevelSequence* m_StartSeq;
 
@@ -48,6 +52,7 @@ private:
 public:
 	UFPS_MainWidget* GetMainHUD() { return m_MainHUD; }
 	UGameoverWidget* GetGameOverHUD() { return m_GameoverWidget; }
+	UGameClearWidget* GetGameClearHUD() { return m_GameClearWidget; }
 
 	void StartSequenceEnd();
 

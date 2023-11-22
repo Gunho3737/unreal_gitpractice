@@ -42,7 +42,16 @@ void AGameEndPortalActor::Tick(float DeltaTime)
 		{
 			float DT = DeltaTime * 0.5f;
 			Fadeout += DT;
-			GameMode->GetGameOverHUD()->SetClearFadeout(Fadeout);
+			if (Fadeout > 1.0f)
+			{
+				//화면이 검어진 다음엔 땡큐부분을 띄움
+				GameMode->GetGameClearHUD()->SetWidgetOpacity(Fadeout / 2);
+			}
+			else
+			{
+				//처음엔 화면을 검게하고
+				GameMode->GetGameOverHUD()->SetClearFadeout(Fadeout);
+			}
 		}
 	}
 
@@ -63,8 +72,15 @@ void AGameEndPortalActor::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActo
 		{
 			GameMode->GetMainHUD()->SetVisibility(ESlateVisibility::Hidden);
 			GameMode->GetGameOverHUD()->SetVisibility(ESlateVisibility::Visible);
-			//GameMode->GetGameOverHUD()->SetClearFadeout(1.0f);
+			GameMode->GetGameClearHUD()->SetVisibility(ESlateVisibility::Visible);
+			GameMode->GetGameClearHUD()->SetWidgetOpacity(0.0f);
 		}
+	}
+
+	if (IsValid(FPlayer))
+	{
+		//행동봉인해버리기
+		FPlayer->SetSeqPlay(true);
 	}
 }
 
