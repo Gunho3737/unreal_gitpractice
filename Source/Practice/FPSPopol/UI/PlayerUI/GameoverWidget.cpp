@@ -10,6 +10,7 @@ void UGameoverWidget::NativeConstruct()
 	RestartButton = Cast<UButton>(GetWidgetFromName(FName("RestartButton")));
 	BackgroundColorImage = Cast<UImage>(GetWidgetFromName(FName("BackgroundColor")));
 	GameOverImage = Cast<UImage>(GetWidgetFromName(FName("GameoverImage")));
+	FadeoutImage = Cast<UImage>(GetWidgetFromName(FName("FadeoutImage")));
 
 	if (!IsValid(RestartButton))
 	{
@@ -27,7 +28,7 @@ void UGameoverWidget::NativeConstruct()
 	fadeon = false;
 
 	SetWidgetOpacity(0.0f);
-
+	SetClearFadeout(0.0f);
 }
 
 void UGameoverWidget::NativeTick(const FGeometry& _geo, float _DT)
@@ -62,6 +63,11 @@ void UGameoverWidget::SetWidgetOpacity(float _opacity)
 	RestartButton->SetRenderOpacity(_opacity);
 	BackgroundColorImage->SetRenderOpacity(_opacity);
 	GameOverImage->SetRenderOpacity(_opacity);
+}
+
+void UGameoverWidget::SetClearFadeout(float _opacity)
+{
+	FadeoutImage->SetRenderOpacity(_opacity);
 }
 
 

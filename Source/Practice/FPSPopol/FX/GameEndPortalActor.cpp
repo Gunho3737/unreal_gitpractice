@@ -3,9 +3,11 @@
 
 #include "GameEndPortalActor.h"
 #include "../Player/FPSPlayer.h"
+#include "../FPSPlayLevelGamemode.h"
 
 // Sets default values
 AGameEndPortalActor::AGameEndPortalActor()
+	: ClearFadeOn(false), Fadeout(0.0f)
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -33,6 +35,17 @@ void AGameEndPortalActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (ClearFadeOn == true)
+	{
+		AFPSPlayLevelGamemode* GameMode = Cast<AFPSPlayLevelGamemode>(UGameplayStatics::GetGameMode(GetWorld()));
+		if (IsValid(GameMode))
+		{
+			float DT = DeltaTime * 0.5f;
+			Fadeout += DT;
+			GameMode->GetGameOverHUD()->SetClearFadeout(Fadeout);
+		}
+	}
+
 }
 
 void AGameEndPortalActor::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _OtherActor, UPrimitiveComponent* _OtherPrimitiveCom, int32 _Index, bool _bFromSweep, const FHitResult& _HitResult)
@@ -42,6 +55,16 @@ void AGameEndPortalActor::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActo
 	if (IsValid(FPlayer))
 	{
 		LOG(Monster, Warning, TEXT("PlayerOvelLap to Teleporter"));
+
+		ClearFadeOn = true;
+
+		AFPSPlayLevelGamemode* GameMode = Cast<AFPSPlayLevelGamemode>(UGameplayStatics::GetGameMode(GetWorld()));
+		if (IsValid(GameMode))
+		{
+			GameMode->GetMainHUD()->SetVisibility(ESlateVisibility::Hidden);
+			GameMode->GetGameOverHUD()->SetVisibility(ESlateVisibility::Visible);
+			//GameMode->GetGameOverHUD()->SetClearFadeout(1.0f);
+		}
 	}
 }
 

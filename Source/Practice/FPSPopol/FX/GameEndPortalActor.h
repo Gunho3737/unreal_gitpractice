@@ -31,6 +31,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
 	UBoxComponent* m_Box;
 
+	bool ClearFadeOn;
+	float Fadeout;
+
 public:
 	//충돌시 호출되는 함수
 	//UFUNCTION()

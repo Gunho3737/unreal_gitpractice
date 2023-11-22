@@ -22,6 +22,7 @@ private:
 	UButton* RestartButton;
 	UImage* BackgroundColorImage;
 	UImage* GameOverImage;
+	UImage* FadeoutImage;
 
 	bool fadeon;
 	float opacity;
@@ -32,6 +33,7 @@ public:
 
 	void StartFadeIn();
 	void SetWidgetOpacity(float _opacity);
+	void SetClearFadeout(float _opacity);
 
 public:
 	UFUNCTION()
