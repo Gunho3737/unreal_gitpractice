@@ -37,4 +37,10 @@ void AStartLevelGameMode::BeginPlay()
 			m_MainHUD->AddToViewport();
 		}
 	}
+
+	APlayerController* pController = GetWorld()->GetFirstPlayerController();
+
+	FInputModeUIOnly uionly{};
+	pController->SetInputMode(uionly);
+	pController->bShowMouseCursor = true;
 }
