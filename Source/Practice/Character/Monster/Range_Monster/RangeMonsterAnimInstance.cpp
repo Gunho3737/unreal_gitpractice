@@ -15,8 +15,7 @@ void URangeMonsterAnimInstance::NativeInitializeAnimation()
 
 void URangeMonsterAnimInstance::NativeBeginPlay()
 {
-	//TSubclassOf를 블루프린트로 로드함
-	m_MonBullet = LoadClass<ARangeMonsterBullet>(GetWorld(), TEXT("/Script/Engine.Blueprint'/Game/FPSPopol/Bullet/BPC_RangeMonsterBullet.BPC_RangeMonsterBullet_C'"));
+
 }
 
 void URangeMonsterAnimInstance::NativeUpdateAnimation(float _fDeltaTime)
@@ -29,6 +28,17 @@ void URangeMonsterAnimInstance::NativeUpdateAnimation(float _fDeltaTime)
 
 	//오너의 state를 매번 받아와서 갱신하고 그거에 맞춰 애니메이션 재상
 	m_State = Monster->GetState();
+}
+
+URangeMonsterAnimInstance::URangeMonsterAnimInstance()
+{
+	ConstructorHelpers::FClassFinder<ARangeMonsterBullet> Bullet(TEXT("/Script/Engine.Blueprint'/Game/FPSPopol/Bullet/BPC_RangeMonsterBullet.BPC_RangeMonsterBullet_C'"));
+
+	if (Bullet.Succeeded())
+	{
+		m_MonBullet = Bullet.Class;
+	}
+
 }
 
 void URangeMonsterAnimInstance::AnimNotify_RangeMonAtt()

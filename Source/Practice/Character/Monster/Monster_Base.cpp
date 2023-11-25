@@ -174,8 +174,11 @@ void AMonster_Base::BeginOverlap(UPrimitiveComponent* _PrimitiveCom, AActor* _Ot
 	{
 	//	LOG(LogTemp, Warning, TEXT("BulletOverLap To Monster"));
 		//GetDamage(100.f);
-		GetDamage(200.f);
-		pAB->BulletDeath();
+		if (m_State != EMON_STATE::DEAD)
+		{
+			GetDamage(200.f);
+			pAB->BulletDeath();
+		}
 	}
 	
 

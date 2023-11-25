@@ -29,6 +29,8 @@ public:
 	virtual void NativeBeginPlay() override;
 	virtual void NativeUpdateAnimation(float _fDeltaTime) override;
 
+	URangeMonsterAnimInstance();
+
 public:
 	UFUNCTION()
 	void AnimNotify_RangeMonAtt();
@@ -38,6 +40,6 @@ public:
 
 private:
 	//ÃÑ¾Ë
-	UPROPERTY(EditDefaultsOnly, Category = Object)
+	UPROPERTY(EditAnywhere, Category = "Input")
 	TSubclassOf<ARangeMonsterBullet> m_MonBullet;
 };

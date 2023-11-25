@@ -32,29 +32,6 @@ AFPSPlayLevelGamemode::AFPSPlayLevelGamemode()
 		m_GameClearClass = GameClasHudFinder.Class;
 	}
 
-}
-
-AFPSPlayLevelGamemode::~AFPSPlayLevelGamemode()
-{
-}
-
-void AFPSPlayLevelGamemode::BeginPlay()
-{
-	Super::BeginPlay();
-
-	if (m_StartSeq != nullptr)
-	{
-		FMovieSceneSequencePlaybackSettings Settings = {};
-		Settings.bHideHud = true;
-		Settings.bHidePlayer = true;
-
-		m_SequencePlayer
-			= ULevelSequencePlayer::CreateLevelSequencePlayer(GetWorld()
-				, m_StartSeq, Settings, m_SequenceActor);
-
-		m_SequencePlayer->Play();
-	}
-
 
 	if (IsValid(m_MainHudClass))
 	{
@@ -106,11 +83,15 @@ void AFPSPlayLevelGamemode::BeginPlay()
 			m_GameClearWidget->SetWidgetOpacity(0.0f);
 		}
 	}
+}
 
+AFPSPlayLevelGamemode::~AFPSPlayLevelGamemode()
+{
+}
 
-
-
-
+void AFPSPlayLevelGamemode::BeginPlay()
+{
+	Super::BeginPlay();
 
 	// 플레이어 컨트롤러의 입력모드를 Game 모드로 전환한다.
 	APlayerController* pController = GetWorld()->GetFirstPlayerController();
@@ -119,6 +100,18 @@ void AFPSPlayLevelGamemode::BeginPlay()
 	pController->SetInputMode(gonly);
 	pController->bShowMouseCursor = false;
 
+	if (m_StartSeq != nullptr)
+	{
+		FMovieSceneSequencePlaybackSettings Settings = {};
+		Settings.bHideHud = true;
+		Settings.bHidePlayer = true;
+
+		m_SequencePlayer
+			= ULevelSequencePlayer::CreateLevelSequencePlayer(GetWorld()
+				, m_StartSeq, Settings, m_SequenceActor);
+
+		m_SequencePlayer->Play();
+	}
 }
 
 void AFPSPlayLevelGamemode::StartSequenceEnd()
