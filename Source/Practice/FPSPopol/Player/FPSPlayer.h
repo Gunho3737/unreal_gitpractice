@@ -17,10 +17,10 @@ class PRACTICE_API AFPSPlayer : public ACharacter
 	GENERATED_BODY()
 
 public:
-	//글로벌헤더의 EngineMinimal.h 사용중
+	//카메라컴포넌트
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
 	UCameraComponent* m_Cam;
-
+	//카메라암컴포넌트
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
 	USpringArmComponent* m_Arm;
 
